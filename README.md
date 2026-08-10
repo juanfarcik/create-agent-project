@@ -1,5 +1,7 @@
 # create-agent-project
 
+*(🇦🇷 [Leer en español](README.es.md))*
+
 A **deterministic scaffold generator for agentic AI projects.** No LLM
 decides the architecture — a rules engine reads your requirements
 (size, risk, domain, autonomy) and picks the smallest agent setup that
@@ -34,6 +36,20 @@ with Claude Code, OpenCode, or Codex CLI and start talking to it.
 **The project lives in [`dotnet/`](dotnet/).** See
 [`dotnet/README.md`](dotnet/README.md) for every other install option,
 full usage, architecture profiles, and work patterns.
+
+## Roadmap
+
+**What's here today** is the source code and the console version — a
+real CLI tool, aimed at people already comfortable with a terminal
+(developers, or anyone who's used one before).
+
+**What's coming next** is a simple web version, no terminal required,
+aimed at the actual non-technical audience this project cares about —
+writers, designers, researchers, anyone with a project and zero
+programming background. The console version isn't a lesser option
+that gets replaced; it's the engine the web version will call into
+(see `dotnet/docs/ARCHITECTURE.md`'s "Api seam" section) — both will
+keep existing side by side.
 
 ## License & governance
 
