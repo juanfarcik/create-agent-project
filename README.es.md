@@ -17,7 +17,7 @@ un escritor, a un diseñador, a alguien haciendo una investigación, que
 a un programador — el modo de trabajo agéntico deja de ser algo
 exclusivo de quien sabe programar.
 
-## ¿Qué es esto, en criollo?
+## ¿Qué es esto?
 
 Es una herramienta gratuita y de código abierto que te arma, en un par
 de minutos, **la carpeta y los archivos de partida** para empezar un
