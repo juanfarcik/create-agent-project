@@ -31,7 +31,7 @@ optional subfolder is included only when it's actually useful here:
 - ✓ `.project/checkpoints/` — included — this architecture uses checkpoints (long-running/scheduled work)
 - ✓ `.project/telemetry/` — included — a long-lived or persistently-running project benefits from iteration history
 
-Re-run `agent-project architecture . --recommend` after the project
+Re-run `create-agent-project architecture . --recommend` after the project
 changes shape (new domain, new roles, new work pattern) to see whether
 this list should change too.
 

@@ -21,7 +21,7 @@ public static class YamlLoader
     {
         var path = Path.Combine(root, ".agent", "project.yaml");
         if (!File.Exists(path))
-            throw new FileNotFoundException($"{path} not found. Is this an agent-project directory?");
+            throw new FileNotFoundException($"{path} not found. Is this an create-agent-project directory?");
 
         var doc = Deserializer.Deserialize<ProjectYamlDoc>(File.ReadAllText(path)) ?? new ProjectYamlDoc();
         var p = doc.Project ?? new ProjectSection();

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Builds self-contained, single-file `agent-project` binaries for every
+# Builds self-contained, single-file `create-agent-project` binaries for every
 # supported platform. No .NET runtime required on the target machine —
 # just download the binary for your OS and run it.
 #
@@ -52,7 +52,7 @@ publish_one() {
   local bin_name="AgentProjectArchitect.Cli"
   [ "${rid#win}" != "$rid" ] && bin_name="AgentProjectArchitect.Cli.exe"
 
-  local archive="${OUT_ROOT}/agent-project-${rid}"
+  local archive="${OUT_ROOT}/create-agent-project-${rid}"
   if [ "${rid#win}" != "$rid" ]; then
     (cd "$out" && zip -q "../../${archive}.zip" "$bin_name")
     echo "    -> ${archive}.zip"

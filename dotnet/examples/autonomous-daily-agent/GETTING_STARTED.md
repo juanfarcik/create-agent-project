@@ -26,7 +26,7 @@ Architecture: **autonomous-loop** — 3 role(s):
 4. Drive it directly ("implement the next backlog item", "run the
    evaluator on this artifact") or let the orchestrator decide the next
    action on its own if `execution_mode` allows it.
-5. Inspect/adjust the architecture with the `agent-project` CLI
+5. Inspect/adjust the architecture with the `create-agent-project` CLI
    (`status`, `architecture --recommend`, `optimize --apply`, `validate`).
 6. Edit `.agent/architecture.yaml` or `.agent/policies.yaml` directly for
    fine-grained control, then re-run `validate`.

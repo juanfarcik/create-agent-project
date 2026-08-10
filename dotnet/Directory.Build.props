@@ -18,7 +18,7 @@
     <!-- Shared package metadata for anything published to NuGet later. -->
     <Authors>Agentic Project Architect contributors</Authors>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/juanfarcik/agent-project-architect</RepositoryUrl>
+    <RepositoryUrl>https://github.com/juanfarcik/create-agent-project</RepositoryUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
 

@@ -11,7 +11,7 @@ public static class CliHelp
     public static string Version =>
         Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "0.0.0";
 
-    public const string Banner = "agent-project — Agentic Project Architect";
+    public const string Banner = "create-agent-project — Agentic Project Architect";
 
     public static string TopLevel => $$"""
         {{Banner}} (v{{Version}})
@@ -23,7 +23,7 @@ public static class CliHelp
         AGENTS.md-reading CLI, with zero vendor lock-in by default.
 
         Usage:
-          agent-project <command> [arguments] [options]
+          create-agent-project <command> [arguments] [options]
 
         Commands:
           new           Create a new agentic project (interactive wizard)
@@ -39,14 +39,14 @@ public static class CliHelp
           -h, --help     Show help (add after any command for command-specific help)
           -v, --version  Show version
 
-        Run 'agent-project <command> --help' for details on a specific command.
-        Full documentation: https://github.com/juanfarcik/agent-project-architect
+        Run 'create-agent-project <command> --help' for details on a specific command.
+        Full documentation: https://github.com/juanfarcik/create-agent-project
         """;
 
     private static readonly Dictionary<string, string> CommandHelp = new()
     {
         ["new"] = """
-            Usage: agent-project new [path] [options]
+            Usage: create-agent-project new [path] [options]
 
             Create a new agentic project through an interactive wizard, then
             generate it at [path] (default: the project's slugified name).
@@ -70,13 +70,13 @@ public static class CliHelp
                 profile / [A]bort
 
             Examples:
-              agent-project new
-              agent-project new my-book --simple
-              agent-project new ./billing-service --advanced --runtime claude-code
+              create-agent-project new
+              create-agent-project new my-book --simple
+              create-agent-project new ./billing-service --advanced --runtime claude-code
             """,
 
         ["validate"] = """
-            Usage: agent-project validate <path>
+            Usage: create-agent-project validate <path>
 
             Checks a generated project for consistency: required files present,
             every role in .agent/architecture.yaml exists in the role library and
@@ -86,21 +86,21 @@ public static class CliHelp
             prints each problem found and exits 1.
 
             Example:
-              agent-project validate ./my-project
+              create-agent-project validate ./my-project
             """,
 
         ["status"] = """
-            Usage: agent-project status <path>
+            Usage: create-agent-project status <path>
 
             Prints .project/state.md and .project/metrics.md — current reality
             and iteration/budget counters. Does not modify anything.
 
             Example:
-              agent-project status ./my-project
+              create-agent-project status ./my-project
             """,
 
         ["architecture"] = """
-            Usage: agent-project architecture <path> [--recommend]
+            Usage: create-agent-project architecture <path> [--recommend]
 
             Shows the architecture currently saved in .agent/architecture.yaml.
 
@@ -113,11 +113,11 @@ public static class CliHelp
                             architecture should change too.
 
             Example:
-              agent-project architecture ./my-project --recommend
+              create-agent-project architecture ./my-project --recommend
             """,
 
         ["optimize"] = """
-            Usage: agent-project optimize <path> [--apply]
+            Usage: create-agent-project optimize <path> [--apply]
 
             Re-runs the optimizer against the project's current requirements and
             architecture, and prints what it would remove/demote and why (or
@@ -130,24 +130,24 @@ public static class CliHelp
                         .claude/agents/, .opencode/agent/) if roles changed.
 
             Example:
-              agent-project optimize ./my-project --apply
+              create-agent-project optimize ./my-project --apply
             """,
 
         ["compare"] = """
-            Usage: agent-project compare
+            Usage: create-agent-project compare
 
             Prints a comparison table of every built-in architecture profile:
             agent count, relative cost, complexity, reliability.
             """,
 
         ["templates"] = """
-            Usage: agent-project templates
+            Usage: create-agent-project templates
 
             Lists every built-in architecture profile with its agent roster.
             """,
 
         ["patterns"] = """
-            Usage: agent-project patterns
+            Usage: create-agent-project patterns
 
             Lists every built-in work pattern (agent-in-the-loop, human-in-the-loop,
             debate-critic, swarm-parallel, ...) with its description and any

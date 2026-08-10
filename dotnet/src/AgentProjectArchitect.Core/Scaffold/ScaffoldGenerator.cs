@@ -243,12 +243,12 @@ Honor these immediately, without asking for confirmation first.
 
 See `.agent/architecture.yaml` for the full agent/topology config and
 `.agent/policies.yaml` for budget and permission policy. Run
-`agent-project validate` after manual edits.
+`create-agent-project validate` after manual edits.
 
 ## Where this structure comes from
 
 This project was scaffolded by Agentic Project Architect
-(GPLv3, https://github.com/juanfarcik/agent-project-architect). Nothing
+(GPLv3, https://github.com/juanfarcik/create-agent-project). Nothing
 above was invented from scratch — the work pattern, role list, and
 "stay disciplined" guidance all trace to real sources (papers, other
 open-source projects, established prior art), documented in that repo's
@@ -282,7 +282,7 @@ optional subfolder is included only when it's actually useful here:
 
 {{structureLines}}
 
-Re-run `agent-project architecture . --recommend` after the project
+Re-run `create-agent-project architecture . --recommend` after the project
 changes shape (new domain, new roles, new work pattern) to see whether
 this list should change too.
 
@@ -362,7 +362,7 @@ Architecture: **{{arch.Profile}}** — {{arch.Agents.Count}} role(s):
 4. Drive it directly ("implement the next backlog item", "run the
    evaluator on this artifact") or let the orchestrator decide the next
    action on its own if `execution_mode` allows it.
-5. Inspect/adjust the architecture with the `agent-project` CLI
+5. Inspect/adjust the architecture with the `create-agent-project` CLI
    (`status`, `architecture --recommend`, `optimize --apply`, `validate`).
 6. Edit `.agent/architecture.yaml` or `.agent/policies.yaml` directly for
    fine-grained control, then re-run `validate`.

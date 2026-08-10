@@ -8,7 +8,7 @@ deterministic, dependency-minimal, and calls no LLM/network APIs in its
 core recommendation/generation path). The realistic attack surface is:
 
 - Malformed/malicious `project.yaml` or `architecture.yaml` fed to
-  `agent-project validate` / `optimize` / `architecture` on an existing
+  `create-agent-project validate` / `optimize` / `architecture` on an existing
   directory (YAML deserialization).
 - A generated project's files being trusted uncritically by an agentic
   CLI without human review.

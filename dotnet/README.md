@@ -1,8 +1,13 @@
-# Agentic Project Architect (.NET)
+# create-agent-project
 
-[![.NET CI](https://github.com/juanfarcik/agent-project-architect/actions/workflows/dotnet-ci.yml/badge.svg)](https://github.com/juanfarcik/agent-project-architect/actions/workflows/dotnet-ci.yml)
+[![.NET CI](https://github.com/juanfarcik/create-agent-project/actions/workflows/dotnet-ci.yml/badge.svg)](https://github.com/juanfarcik/create-agent-project/actions/workflows/dotnet-ci.yml)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 [![.NET](https://img.shields.io/badge/.NET-8.0-512BD4)](https://dotnet.microsoft.com/)
+
+> Working name. Once this has real usage, it'll get a proper product
+> name — `create-agent-project` is deliberately literal for now (same
+> naming spirit as `create-react-app`/`create-next-app`: it says exactly
+> what it does, nothing more).
 
 Domain-agnostic scaffold generator for agentic projects. It asks what
 you're trying to accomplish in plain language, designs the **smallest
@@ -12,10 +17,6 @@ and generates a portable project you open directly with **Claude Code**,
 
 It is not another multi-agent framework. It doesn't run agents — it
 designs the workspace they run in, and gets out of the way.
-
-This is the C#/.NET port — the canonical, actively maintained
-implementation going forward. A Python prototype exists at the repo root
-for reference but is no longer where development happens.
 
 This is a personal, GPLv3-licensed research project — an open exploration
 of how individuals (not just engineering teams) can work with agentic
@@ -36,17 +37,17 @@ doesn't need.
 
 ## Install
 
-Three ways to get `agent-project`, in order of how much you want to deal
+Three ways to get `create-agent-project`, in order of how much you want to deal
 with:
 
 ### 1. Download a release binary (no .NET install needed)
 
 Grab the archive for your platform from
-[Releases](https://github.com/juanfarcik/agent-project-architect/releases),
+[Releases](https://github.com/juanfarcik/create-agent-project/releases),
 extract it, and run the binary directly:
 
 ```bash
-tar -xzf agent-project-osx-arm64.tar.gz   # or unzip agent-project-win-x64.zip
+tar -xzf create-agent-project-osx-arm64.tar.gz   # or unzip create-agent-project-win-x64.zip
 ./AgentProjectArchitect.Cli --help
 ```
 
@@ -155,19 +156,19 @@ before writing anything to disk — see `ProjectComponentCatalog` in
 ## CLI commands
 
 ```bash
-agent-project new [path] [--simple|--advanced] [--runtime <agnostic|claude-code|opencode|codex-cli|all>]
-agent-project validate      <path>
-agent-project status        <path>
-agent-project architecture  <path> [--recommend]
-agent-project optimize      <path> [--apply]
-agent-project compare
-agent-project templates
-agent-project patterns
-agent-project --version
-agent-project <command> --help    # detailed help for any command
+create-agent-project new [path] [--simple|--advanced] [--runtime <agnostic|claude-code|opencode|codex-cli|all>]
+create-agent-project validate      <path>
+create-agent-project status        <path>
+create-agent-project architecture  <path> [--recommend]
+create-agent-project optimize      <path> [--apply]
+create-agent-project compare
+create-agent-project templates
+create-agent-project patterns
+create-agent-project --version
+create-agent-project <command> --help    # detailed help for any command
 ```
 
-The commands above assume the binary is on your `PATH` as `agent-project`
+The commands above assume the binary is on your `PATH` as `create-agent-project`
 (rename it after downloading/building, or add an alias). Running it
 un-renamed, it's `AgentProjectArchitect.Cli` / `./AgentProjectArchitect.Cli`
 depending on install method.
@@ -177,8 +178,8 @@ depending on install method.
 Same catalogue as the design brief: 9 architecture profiles (`minimal`
 through `software-high-reliability`) and 11 work patterns
 (`agent-in-the-loop`, `human-in-the-loop`, `debate-critic`,
-`swarm-parallel`, ...), all deterministic — `agent-project templates`
-and `agent-project patterns` list them.
+`swarm-parallel`, ...), all deterministic — `create-agent-project templates`
+and `create-agent-project patterns` list them.
 
 **None of these were invented here.** Every pattern traces to a real
 paper, project, or established prior art — see

@@ -32,7 +32,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dotnet/publish/agent-project-*
+          files: dotnet/publish/create-agent-project-*
           generate_release_notes: true
           body: |
             See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/dotnet/CHANGELOG.md) for what changed.
