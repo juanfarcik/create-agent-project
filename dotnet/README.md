@@ -25,6 +25,27 @@ at company scale, that's a different, commercial problem — see
 [Tikra](https://www.tikra.team/) ("AI Teammates for Engineering Teams"),
 by the same author.
 
+## Who this is for
+
+- **Individuals working solo** — hobbyists, freelancers, researchers,
+  writers, indie developers. Not engineering teams, not company-scale
+  orchestration.
+- **Any domain that produces file-based output**, not just software:
+  writing a book, running a research process, planning a business,
+  making music or art, as much as building an app.
+- **People with no agent-architecture experience** — the wizard's
+  Simple mode asks in plain language, defaults sensibly, and never
+  requires understanding what "multi-agent" even means. There's also
+  an Advanced mode for full explicit control if you want it.
+- **Anyone who wants to avoid vendor lock-in** — the generated base
+  works with Claude Code, OpenCode, Codex CLI, or any future tool that
+  reads `AGENTS.md`, without regenerating anything.
+
+**What this is not:** an agent framework, an orchestrator, or anything
+that runs agents itself. It designs the workspace an agent works in,
+then gets out of the way — see `docs/ARCHITECTURE.md` for exactly
+where its responsibility ends.
+
 ## Why
 
 Most "AI agent templates" start from the architecture (how many agents,

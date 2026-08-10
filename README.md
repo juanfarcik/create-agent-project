@@ -1,10 +1,19 @@
-# Agentic Project Architect
+# create-agent-project
 
-Domain-agnostic scaffold generator for agentic projects. It asks what
-you're trying to accomplish in plain language, designs the **smallest
-architecture that fits** (from a single agent to a full multi-role team),
-and generates a portable project you open directly with **Claude Code**,
-**OpenCode**, **Codex CLI**, or any other `AGENTS.md`-compatible runtime.
+A **deterministic scaffold generator for agentic AI projects.** No LLM
+decides the architecture — a rules engine reads your requirements
+(size, risk, domain, autonomy) and picks the smallest agent setup that
+actually fits, from one agent to a full multi-role team. The output is
+a portable, CLI-agnostic project structure (`AGENTS.md` + `.agent/` +
+`.project/`) you open directly with **Claude Code**, **OpenCode**,
+**Codex CLI**, or any other `AGENTS.md`-reading tool — no vendor
+lock-in by default.
+
+**Who it's for:** individuals working solo — not enterprise teams —
+across any domain: code, writing, research, creative work, business
+planning. If you're looking for agentic orchestration at company
+scale, that's a different, commercial problem this project explicitly
+does not try to solve (see `dotnet/README.md` for what does).
 
 **The project lives in [`dotnet/`](dotnet/).** See
 [`dotnet/README.md`](dotnet/README.md) for install, usage, architecture
