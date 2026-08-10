@@ -3,6 +3,13 @@ namespace AgentProjectArchitect.Core;
 /// <summary>
 /// Agentic work/loop patterns — explicit, user-selectable ways an agent
 /// (or set of agents) operates, independent of which roles exist.
+///
+/// None of these were invented for this project — each traces to a real
+/// paper or established project (ReAct for agent-in-the-loop, Reflexion
+/// for self-critique, multiagent debate research for debate-critic,
+/// blackboard architecture from 1980s AI, etc). See
+/// <c>docs/REFERENCES.md</c> at the repo root for the actual source of
+/// every pattern below.
 /// </summary>
 public sealed record LoopPattern(
     string Id,

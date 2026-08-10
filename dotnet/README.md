@@ -127,6 +127,13 @@ through `software-high-reliability`) and 11 work patterns
 `swarm-parallel`, ...), all deterministic — `agent-project templates`
 and `agent-project patterns` list them.
 
+**None of these were invented here.** Every pattern traces to a real
+paper, project, or established prior art — see
+[`docs/REFERENCES.md`](docs/REFERENCES.md) for the actual source of
+each one, plus an honest assessment of where this project is and isn't
+aligned with current agentic-system trends (including real gaps like
+no MCP integration and no evaluation harness).
+
 ## Project layout
 
 ```

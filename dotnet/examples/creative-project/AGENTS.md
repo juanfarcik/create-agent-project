@@ -49,6 +49,10 @@ a project:
    and letting the approach follow, over a rigid step list that breaks
    the moment reality differs slightly.
 
+(These four are widely circulated as "Karpathy's AI coding rules" — see
+this project's `docs/REFERENCES.md` for the actual attribution chain,
+which is more nuanced than that name implies.)
+
 ## Loop — Auto (let the tool decide)
 
 Derived from size/risk/lifetime/execution mode — no explicit pattern forced.
@@ -101,3 +105,12 @@ Honor these immediately, without asking for confirmation first.
 See `.agent/architecture.yaml` for the full agent/topology config and
 `.agent/policies.yaml` for budget and permission policy. Run
 `agent-project validate` after manual edits.
+
+## Where this structure comes from
+
+This project was scaffolded by Agentic Project Architect
+(GPLv3, https://github.com/juanfarcik/agent-project-architect). Nothing
+above was invented from scratch — the work pattern, role list, and
+"stay disciplined" guidance all trace to real sources (papers, other
+open-source projects, established prior art), documented in that repo's
+`docs/REFERENCES.md`.
