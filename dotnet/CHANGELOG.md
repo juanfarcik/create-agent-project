@@ -10,8 +10,6 @@ batched at release time.
 
 ## [0.1.0] — first tagged release
 
-The C#/.NET port reaching feature parity with (and then exceeding) the
-original Python prototype, which has since been removed from this repo.
 See `docs/REFERENCES.md` for where every non-obvious idea below actually
 comes from — nothing here is presented as invented in-house unless it is.
 

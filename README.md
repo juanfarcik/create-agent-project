@@ -10,9 +10,6 @@ and generates a portable project you open directly with **Claude Code**,
 [`dotnet/README.md`](dotnet/README.md) for install, usage, architecture
 profiles, work patterns, and everything else.
 
-An earlier Python prototype existed at this repo's root; it has been
-fully replaced by the C#/.NET implementation and removed.
-
 ## License & governance
 
 GPLv3 — see [LICENSE](LICENSE). Governance model (who decides what gets
