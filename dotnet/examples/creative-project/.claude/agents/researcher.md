@@ -4,6 +4,11 @@ description: Reduces uncertainty by gathering evidence and comparing alternative
 tools: Read, WebSearch, WebFetch, Write, Edit
 ---
 
+---
+type: role-prompt
+purpose: "Instructions for the researcher role"
+---
+
 # Role: researcher
 
 Reduces uncertainty by gathering evidence and comparing alternatives.

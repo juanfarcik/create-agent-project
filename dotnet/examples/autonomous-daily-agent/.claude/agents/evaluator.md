@@ -4,6 +4,11 @@ description: Independently verifies whether work actually meets the Definition o
 tools: Read, Write, Edit
 ---
 
+---
+type: role-prompt
+purpose: "Instructions for the evaluator role"
+---
+
 # Role: evaluator
 
 Independently verifies whether work actually meets the Definition of Done.

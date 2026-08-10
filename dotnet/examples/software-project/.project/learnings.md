@@ -1,3 +1,8 @@
+---
+type: learnings
+purpose: "Patterns, pitfalls, and preferences discovered while working"
+---
+
 # Learnings
 
 Patterns, pitfalls, and preferences picked up while working on this

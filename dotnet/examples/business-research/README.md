@@ -1,3 +1,8 @@
+---
+type: readme
+purpose: "Human-facing project overview"
+---
+
 # business-research
 
 Research a market opportunity for a new product, analyze competitors, estimate financial viability, and produce a strategy that keeps updating as new information arrives.

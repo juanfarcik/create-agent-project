@@ -3,6 +3,11 @@ description: Analyzes product/usage data and metrics to inform decisions, on dem
 mode: subagent
 ---
 
+---
+type: role-prompt
+purpose: "Instructions for the bi-analyst role"
+---
+
 # Role: bi-analyst
 
 Analyzes product/usage data and metrics to inform decisions, on demand.

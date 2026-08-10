@@ -27,15 +27,16 @@ public static class ScaffoldGenerator
     {
         Directory.CreateDirectory(root);
         Directory.CreateDirectory(Path.Combine(root, ".agent", "prompts"));
-        Directory.CreateDirectory(Path.Combine(root, ".agent", "adapters"));
-        Directory.CreateDirectory(Path.Combine(root, ".agent", "schemas"));
         Directory.CreateDirectory(Path.Combine(root, ".project"));
         foreach (var sub in ProjectSubdirs)
             Directory.CreateDirectory(Path.Combine(root, ".project", sub));
 
-        Write(root, "AGENTS.md", AgentsMd(req, arch));
-        Write(root, "README.md", ReadmeMd(req, arch));
-        Write(root, "GETTING_STARTED.md", GettingStartedMd(req, arch));
+        WriteMd(root, "AGENTS.md", "agent-instructions",
+            "Entry point every agent runtime reads first", AgentsMd(req, arch));
+        WriteMd(root, "README.md", "readme",
+            "Human-facing project overview", ReadmeMd(req, arch));
+        WriteMd(root, "GETTING_STARTED.md", "getting-started",
+            "Step-by-step onboarding for the human", GettingStartedMd(req, arch));
 
         Write(root, Path.Combine(".agent", "project.yaml"), ProjectYaml(req));
         Write(root, Path.Combine(".agent", "architecture.yaml"), ArchitectureYaml(arch));
@@ -44,18 +45,32 @@ public static class ScaffoldGenerator
         foreach (var agent in arch.Agents)
         {
             if (Roles.All.TryGetValue(agent.Role, out var role))
-                Write(root, Path.Combine(".agent", "prompts", $"{agent.Role}.md"), RolePrompt(agent.Role, role));
+            {
+                WriteMd(root, Path.Combine(".agent", "prompts", $"{agent.Role}.md"), "role-prompt",
+                    $"Instructions for the {agent.Role} role", RolePrompt(agent.Role, role));
+            }
         }
 
-        Write(root, Path.Combine(".project", "goal.md"), GoalMd(req));
-        Write(root, Path.Combine(".project", "context.md"), ContextMd(req));
-        Write(root, Path.Combine(".project", "state.md"), StateMd());
-        Write(root, Path.Combine(".project", "backlog.md"), BacklogMd());
-        Write(root, Path.Combine(".project", "decisions.md"), DecisionsMd());
-        Write(root, Path.Combine(".project", "learnings.md"), LearningsMd());
-        Write(root, Path.Combine(".project", "constraints.md"), ConstraintsMd(req, arch));
-        Write(root, Path.Combine(".project", "resources.md"), ResourcesMd());
-        Write(root, Path.Combine(".project", "metrics.md"), MetricsMd(req));
+        WriteMd(root, Path.Combine(".project", "goal.md"), "goal",
+            "Objective and Definition of Done for this project", GoalMd(req));
+        WriteMd(root, Path.Combine(".project", "context.md"), "context",
+            "Durable background facts agents should remember", ContextMd(req));
+        WriteMd(root, Path.Combine(".project", "state.md"), "state",
+            "Current project status — reality now, not history", StateMd());
+        WriteMd(root, Path.Combine(".project", "backlog.md"), "backlog",
+            "Actionable next work", BacklogMd());
+        WriteMd(root, Path.Combine(".project", "decisions.md"), "decisions",
+            "Log of deliberate, non-trivial choices", DecisionsMd());
+        WriteMd(root, Path.Combine(".project", "learnings.md"), "learnings",
+            "Patterns, pitfalls, and preferences discovered while working", LearningsMd());
+        WriteMd(root, Path.Combine(".project", "constraints.md"), "constraints",
+            "Human approval gates and limits for this project", ConstraintsMd(req, arch));
+        WriteMd(root, Path.Combine(".project", "resources.md"), "resources",
+            "External resources in use by this project", ResourcesMd());
+        WriteMd(root, Path.Combine(".project", "metrics.md"), "metrics",
+            "Iteration, budget, and task counters", MetricsMd(req));
+        WriteMd(root, Path.Combine(".project", "outputs", "README.md"), "outputs-guide",
+            "What kind of durable output belongs in this folder", OutputsReadme(req));
     }
 
     private static void Write(string root, string relative, string content)
@@ -63,6 +78,24 @@ public static class ScaffoldGenerator
         var path = Path.Combine(root, relative);
         Directory.CreateDirectory(Path.GetDirectoryName(path)!);
         File.WriteAllText(path, content.TrimEnd() + "\n");
+    }
+
+    /// <summary>
+    /// Writes a markdown file with a small YAML frontmatter block (type +
+    /// one-line purpose) prepended, so a file can be classified by a tool
+    /// or an LLM without reading its full body — the same technique
+    /// static-site generators and note-taking tools use for machine-
+    /// readable structure on top of human-readable markdown.
+    /// </summary>
+    private static void WriteMd(string root, string relative, string type, string purpose, string content)
+    {
+        var frontmatter = $"""
+            ---
+            type: {type}
+            purpose: "{purpose.Replace("\"", "\\\"")}"
+            ---
+            """;
+        Write(root, relative, frontmatter + "\n\n" + content.TrimStart());
     }
 
     // -------------------------------------------------------------
@@ -160,6 +193,17 @@ adds real value — a single agent handling everything is often correct.
 Record every non-trivial decision in `.project/decisions.md`, anything
 worth remembering for next time in `.project/learnings.md`, and every
 durable output under `.project/outputs/` (conversation is not the output).
+
+## Growing the structure: nested AGENTS.md
+
+If `.project/outputs/` grows real substructure (chapters, modules,
+tracks, whatever the project's unit of work is), and a subfolder
+accumulates its own context that doesn't belong in the project-wide
+files above, drop a small `AGENTS.md` inside that subfolder explaining
+just that subset. Claude Code and similar runtimes read `AGENTS.md`
+hierarchically — the closer file adds to, not replaces, this one. Use
+this when a subfolder's context would otherwise bloat this file or
+`.project/context.md`; don't create one preemptively for every folder.
 
 ## Safety phrases
 
@@ -544,4 +588,45 @@ Reviews passed: 0
 Reviews failed: 0
 Project status: NOT_STARTED
 """;
+
+    private static readonly Dictionary<string, string> OutputsGuidanceByDomain = new()
+    {
+        ["software"] = "Design docs, architecture decision records, and release notes. " +
+            "Source code itself lives in the project's normal source layout (e.g. `src/`) — " +
+            "this scaffold doesn't dictate where; only durable *decisions and docs about* the " +
+            "code belong here, not the code.",
+        ["research"] = "Findings and synthesized reports — one file per finding or report, " +
+            "dated. Raw notes-in-progress can live here too, but promote anything conclusive " +
+            "out of draft form before calling it done.",
+        ["creative"] = "Finished or feedback-ready creative work — chapters, tracks, mockups, " +
+            "scenes, whatever the medium's actual unit of work is. Work-in-progress drafts are " +
+            "fine here too; this isn't a \"final only\" folder, it's the durable-artifact folder " +
+            "as opposed to conversation.",
+        ["business"] = "Strategy documents, market analysis, financial estimates — anything " +
+            "meant to inform a real decision, not exploratory scratch work.",
+        ["ops"] = "Digests, run reports, and logs of completed automated actions — one file " +
+            "per run or per period, not one giant append-only log.",
+        ["general"] = "Whatever durable output this project produces. If it doesn't fit " +
+            "cleanly in one file per unit of work, that's a sign to reconsider the structure, " +
+            "not to make one file bigger and bigger.",
+    };
+
+    private static string OutputsReadme(Requirements req)
+    {
+        var guidance = OutputsGuidanceByDomain.GetValueOrDefault(req.Domain, OutputsGuidanceByDomain["general"]);
+        return $"""
+# Outputs
+
+{guidance}
+
+This folder is the actual point of the project — everything else in
+`.project/` and `.agent/` exists to help produce what goes here.
+Conversation with the agent is not the output; what's saved in this
+folder is.
+
+See `.project/goal.md` for what "done" means for this project's outputs,
+and the "Growing the structure" section in the root `AGENTS.md` for when
+a subfolder here should get its own `AGENTS.md`.
+""";
+    }
 }

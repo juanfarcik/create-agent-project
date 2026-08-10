@@ -1,3 +1,8 @@
+---
+type: getting-started
+purpose: "Step-by-step onboarding for the human"
+---
+
 # Getting Started with personal-research
 
 You don't need to know anything about "agents" or "prompts" to use this.

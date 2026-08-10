@@ -4,6 +4,11 @@ description: Challenges assumptions and identifies weaknesses, on demand.
 tools: Read, Write, Edit
 ---
 
+---
+type: role-prompt
+purpose: "Instructions for the critic role"
+---
+
 # Role: critic
 
 Challenges assumptions and identifies weaknesses, on demand.

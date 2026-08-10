@@ -1,3 +1,8 @@
+---
+type: role-prompt
+purpose: "Instructions for the analyst role"
+---
+
 # Role: analyst
 
 Transforms information into conclusions, separating observation from inference.

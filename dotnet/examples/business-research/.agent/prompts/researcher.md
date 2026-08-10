@@ -1,3 +1,8 @@
+---
+type: role-prompt
+purpose: "Instructions for the researcher role"
+---
+
 # Role: researcher
 
 Reduces uncertainty by gathering evidence and comparing alternatives.

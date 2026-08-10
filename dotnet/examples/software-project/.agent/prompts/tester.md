@@ -1,3 +1,8 @@
+---
+type: role-prompt
+purpose: "Instructions for the tester role"
+---
+
 # Role: tester
 
 Writes and runs automated tests, and reports failures with a concrete repro.

@@ -1,3 +1,8 @@
+---
+type: context
+purpose: "Durable background facts agents should remember"
+---
+
 # Project Context
 
 (no initial context provided)

@@ -4,6 +4,11 @@ description: Maintains creative vision and coherence across creative work.
 tools: Read, Write, Edit
 ---
 
+---
+type: role-prompt
+purpose: "Instructions for the creative-director role"
+---
+
 # Role: creative-director
 
 Maintains creative vision and coherence across creative work.

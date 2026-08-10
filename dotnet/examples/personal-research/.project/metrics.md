@@ -1,3 +1,8 @@
+---
+type: metrics
+purpose: "Iteration, budget, and task counters"
+---
+
 # Metrics
 
 Iterations: 0

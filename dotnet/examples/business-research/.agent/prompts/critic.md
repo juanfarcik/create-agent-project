@@ -1,3 +1,8 @@
+---
+type: role-prompt
+purpose: "Instructions for the critic role"
+---
+
 # Role: critic
 
 Challenges assumptions and identifies weaknesses, on demand.

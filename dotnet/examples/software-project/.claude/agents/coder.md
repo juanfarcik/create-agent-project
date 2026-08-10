@@ -4,6 +4,11 @@ description: Implements the code required to satisfy a task, following the curre
 tools: Read, Write, Edit, Bash
 ---
 
+---
+type: role-prompt
+purpose: "Instructions for the coder role"
+---
+
 # Role: coder
 
 Implements the code required to satisfy a task, following the current design.

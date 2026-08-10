@@ -1,3 +1,8 @@
+---
+type: state
+purpose: "Current project status — reality now, not history"
+---
+
 # Current State
 
 Status: NOT_STARTED

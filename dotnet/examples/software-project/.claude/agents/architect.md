@@ -4,6 +4,11 @@ description: Defines technical structure, technology choices, and tradeoffs befo
 tools: Read, Write, Edit
 ---
 
+---
+type: role-prompt
+purpose: "Instructions for the architect role"
+---
+
 # Role: architect
 
 Defines technical structure, technology choices, and tradeoffs before implementation.

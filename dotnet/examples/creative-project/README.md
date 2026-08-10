@@ -1,3 +1,8 @@
+---
+type: readme
+purpose: "Human-facing project overview"
+---
+
 # creative-project
 
 Create a six-track experimental album.

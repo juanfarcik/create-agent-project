@@ -1,3 +1,8 @@
+---
+type: getting-started
+purpose: "Step-by-step onboarding for the human"
+---
+
 # Getting Started with software-project
 
 Architecture: **software-standard** — 6 role(s):

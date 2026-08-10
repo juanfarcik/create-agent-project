@@ -1,3 +1,8 @@
+---
+type: getting-started
+purpose: "Step-by-step onboarding for the human"
+---
+
 # Getting Started with business-research
 
 Architecture: **collaborative** — 4 role(s):

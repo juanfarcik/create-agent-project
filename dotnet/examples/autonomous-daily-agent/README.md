@@ -1,3 +1,8 @@
+---
+type: readme
+purpose: "Human-facing project overview"
+---
+
 # autonomous-daily-agent
 
 Continuously monitor a project's backlog, pick the highest-value next action, and execute it every day without supervision unless something risky comes up.

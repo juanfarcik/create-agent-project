@@ -1,3 +1,8 @@
+---
+type: readme
+purpose: "Human-facing project overview"
+---
+
 # software-project
 
 Build and ship a small SaaS billing dashboard.

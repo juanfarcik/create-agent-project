@@ -1,3 +1,8 @@
+---
+type: constraints
+purpose: "Human approval gates and limits for this project"
+---
+
 # Constraints
 
 (no explicit constraints provided)

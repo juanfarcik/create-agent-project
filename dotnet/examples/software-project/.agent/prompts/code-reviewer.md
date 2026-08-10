@@ -1,3 +1,8 @@
+---
+type: role-prompt
+purpose: "Instructions for the code-reviewer role"
+---
+
 # Role: code-reviewer
 
 Reviews code changes for correctness, security, and unnecessary complexity before merge.

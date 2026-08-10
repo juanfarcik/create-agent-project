@@ -1,3 +1,8 @@
+---
+type: decisions
+purpose: "Log of deliberate, non-trivial choices"
+---
+
 # Decisions
 
 No decisions recorded yet. Each entry should include: decision, date,

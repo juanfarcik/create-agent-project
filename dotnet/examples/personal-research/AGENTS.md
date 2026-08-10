@@ -1,3 +1,8 @@
+---
+type: agent-instructions
+purpose: "Entry point every agent runtime reads first"
+---
+
 # personal-research — Agent Instructions
 
 This is a **research** project. Architecture: **research**.
@@ -83,6 +88,17 @@ adds real value — a single agent handling everything is often correct.
 Record every non-trivial decision in `.project/decisions.md`, anything
 worth remembering for next time in `.project/learnings.md`, and every
 durable output under `.project/outputs/` (conversation is not the output).
+
+## Growing the structure: nested AGENTS.md
+
+If `.project/outputs/` grows real substructure (chapters, modules,
+tracks, whatever the project's unit of work is), and a subfolder
+accumulates its own context that doesn't belong in the project-wide
+files above, drop a small `AGENTS.md` inside that subfolder explaining
+just that subset. Claude Code and similar runtimes read `AGENTS.md`
+hierarchically — the closer file adds to, not replaces, this one. Use
+this when a subfolder's context would otherwise bloat this file or
+`.project/context.md`; don't create one preemptively for every folder.
 
 ## Safety phrases
 

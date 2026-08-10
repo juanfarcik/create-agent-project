@@ -3,6 +3,11 @@ description: Coordinates the project and decides the next highest-value action.
 mode: primary
 ---
 
+---
+type: role-prompt
+purpose: "Instructions for the orchestrator role"
+---
+
 # Role: orchestrator
 
 Coordinates the project and decides the next highest-value action.

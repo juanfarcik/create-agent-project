@@ -1,3 +1,8 @@
+---
+type: goal
+purpose: "Objective and Definition of Done for this project"
+---
+
 # Goal
 
 ## Objective

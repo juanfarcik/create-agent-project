@@ -4,6 +4,11 @@ description: Transforms information into conclusions, separating observation fro
 tools: Read, Write, Edit
 ---
 
+---
+type: role-prompt
+purpose: "Instructions for the analyst role"
+---
+
 # Role: analyst
 
 Transforms information into conclusions, separating observation from inference.

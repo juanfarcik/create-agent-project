@@ -1,3 +1,8 @@
+---
+type: getting-started
+purpose: "Step-by-step onboarding for the human"
+---
+
 # Getting Started with autonomous-daily-agent
 
 Architecture: **autonomous-loop** — 3 role(s):
