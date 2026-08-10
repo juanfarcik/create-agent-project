@@ -2,6 +2,21 @@
 
 *(🇬🇧 [Read in English](README.md))*
 
+## ¿Por qué importa esto?
+
+Hoy la mayoría de la gente usa la IA como un chat: le preguntás algo,
+te responde, listo. Pero el salto grande — trabajar con la IA de forma
+**agéntica**, donde no solo responde sino que lee tus archivos,
+entiende el contexto de tu proyecto, y va avanzando trabajo real por
+vos — hoy lo están aprovechando casi exclusivamente los programadores,
+porque las herramientas para hacerlo (Claude Code, OpenCode, Codex CLI)
+nacieron pensadas para código.
+
+Esta herramienta no tiene esa limitación. Le sirve exactamente igual a
+un escritor, a un diseñador, a alguien haciendo una investigación, que
+a un programador — el modo de trabajo agéntico deja de ser algo
+exclusivo de quien sabe programar.
+
 ## ¿Qué es esto, en criollo?
 
 Es una herramienta gratuita y de código abierto que te arma, en un par
