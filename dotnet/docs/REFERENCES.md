@@ -1,5 +1,8 @@
 # References
 
+See [`ARCHITECTURE.md`](ARCHITECTURE.md) for *how* this system is built.
+This document is about *where the ideas came from* — why, not how.
+
 Every work pattern, architectural idea, and engineering practice in this
 project comes from somewhere. This document traces each one to a real
 source — a paper, a project, a spec, a book — so anyone can go verify it,

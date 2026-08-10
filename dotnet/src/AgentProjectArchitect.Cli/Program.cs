@@ -4,16 +4,37 @@ namespace AgentProjectArchitect.Cli;
 
 public static class Program
 {
+    private static readonly string[] Commands =
+        { "new", "validate", "status", "architecture", "optimize", "compare", "templates", "patterns" };
+
     public static int Main(string[] args)
     {
         if (args.Length == 0)
         {
-            PrintUsage();
+            Console.WriteLine(CliHelp.TopLevel);
             return 1;
+        }
+
+        if (args[0] is "-v" or "--version")
+        {
+            Console.WriteLine(CliHelp.Version);
+            return 0;
+        }
+
+        if (args[0] is "-h" or "--help")
+        {
+            Console.WriteLine(CliHelp.TopLevel);
+            return 0;
         }
 
         var command = args[0];
         var rest = args.Skip(1).ToArray();
+
+        if (Commands.Contains(command) && rest.Any(a => a is "-h" or "--help"))
+        {
+            Console.WriteLine(CliHelp.TryGetCommandHelp(command, out var help) ? help : CliHelp.TopLevel);
+            return 0;
+        }
 
         try
         {
@@ -27,7 +48,6 @@ public static class Program
                 "compare" => CmdCompare(),
                 "templates" => CmdTemplates(),
                 "patterns" => CmdPatterns(),
-                "-h" or "--help" => Usage(),
                 _ => UnknownCommand(command),
             };
         }
@@ -38,30 +58,11 @@ public static class Program
         }
     }
 
-    private static int Usage() { PrintUsage(); return 0; }
-
     private static int UnknownCommand(string command)
     {
-        Console.Error.WriteLine($"error: unknown command '{command}'");
-        PrintUsage();
+        Console.Error.WriteLine($"error: unknown command '{command}'\n");
+        Console.WriteLine(CliHelp.TopLevel);
         return 1;
-    }
-
-    private static void PrintUsage()
-    {
-        Console.WriteLine("""
-agent-project — Agentic Project Architect
-
-Usage:
-  agent-project new [path] [--simple|--advanced] [--runtime <agnostic|claude-code|opencode|codex-cli|all>]
-  agent-project validate <path>
-  agent-project status <path>
-  agent-project architecture <path> [--recommend]
-  agent-project optimize <path> [--apply]
-  agent-project compare
-  agent-project templates
-  agent-project patterns
-""");
     }
 
     // -----------------------------------------------------------------

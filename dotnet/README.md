@@ -34,48 +34,61 @@ high-stakes software launch gets an architect, coder, tester, QA, code
 reviewer, and human approval gates. Nothing is generated that the project
 doesn't need.
 
-## Requirements
+## Install
 
-.NET 8 SDK (LTS). No other dependencies to build/run the CLI.
+Three ways to get `agent-project`, in order of how much you want to deal
+with:
 
-## Build & test
+### 1. Download a release binary (no .NET install needed)
+
+Grab the archive for your platform from
+[Releases](https://github.com/juanfarcik/agent-project-architect/releases),
+extract it, and run the binary directly:
+
+```bash
+tar -xzf agent-project-osx-arm64.tar.gz   # or unzip agent-project-win-x64.zip
+./AgentProjectArchitect.Cli --help
+```
+
+Self-contained and single-file — the whole .NET runtime is bundled in,
+nothing else to install. (This is *not* Native AOT — see the note below
+for why, and what that would take.)
+
+### 2. Build the binary yourself
+
+Requires the .NET 8 SDK.
+
+```bash
+cd dotnet
+./scripts/publish.sh              # current OS/arch only
+./scripts/publish.sh --all        # every supported platform
+./scripts/publish.sh osx-arm64    # one specific platform
+```
+
+Binaries land in `dotnet/publish/`. This is exactly what the release
+workflow (`.github/workflows/release.yml`) runs on every `v*` tag push.
+
+### 3. Run from source
 
 ```bash
 cd dotnet
 dotnet build
 dotnet test
-```
-
-## Run
-
-```bash
 dotnet run --project src/AgentProjectArchitect.Cli -- new
 ```
 
-Or build once and use the binary directly:
+### Why not Native AOT?
 
-```bash
-dotnet publish src/AgentProjectArchitect.Cli -c Release -o out
-./out/AgentProjectArchitect.Cli new
-```
-
-For a single-file binary that doesn't require installing the .NET
-runtime, publish self-contained (no AOT):
-
-```bash
-dotnet publish src/AgentProjectArchitect.Cli -c Release -r <RID> \
-  --self-contained -p:PublishSingleFile=true -o out
-```
-
-(`<RID>` e.g. `osx-arm64`, `linux-x64`, `win-x64`.)
-
-**Native AOT (`-p:PublishAot=true`) does not work yet.** It compiles, but
-`validate`/`architecture`/`optimize` — anything that reads `.agent/*.yaml`
-back — crashes at runtime ("Exception during deserialization"), because
-YamlDotNet's default (de)serializer relies on reflection, which trimming
-removes. Fixing this means switching to YamlDotNet's source-generated
-static context (`StaticSerializerBuilder`/`StaticDeserializerBuilder`,
-see their AOT docs) — tracked as a known limitation, contributions welcome.
+`dotnet publish -p:PublishAot=true` compiles, but `validate` /
+`architecture` / `optimize` — anything that reads `.agent/*.yaml` back —
+crashes at runtime ("Exception during deserialization"), because
+YamlDotNet's default (de)serializer relies on reflection, which AOT
+trimming removes. Self-contained + single-file (what `publish.sh` does)
+gives the same "no separate runtime install" outcome without that
+breakage. Fixing AOT properly means switching to YamlDotNet's
+source-generated static context (`StaticSerializerBuilder`/
+`StaticDeserializerBuilder`) — tracked as a known limitation,
+contributions welcome.
 
 ## Wizard
 
@@ -150,7 +163,14 @@ agent-project optimize      <path> [--apply]
 agent-project compare
 agent-project templates
 agent-project patterns
+agent-project --version
+agent-project <command> --help    # detailed help for any command
 ```
+
+The commands above assume the binary is on your `PATH` as `agent-project`
+(rename it after downloading/building, or add an alias). Running it
+un-renamed, it's `AgentProjectArchitect.Cli` / `./AgentProjectArchitect.Cli`
+depending on install method.
 
 ## Architecture profiles & work patterns
 
@@ -209,6 +229,15 @@ dotnet/
 ```bash
 dotnet run --project examples/GenerateExamples
 ```
+
+## Documentation
+
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — technical reference:
+  module-by-module design, the recommendation/optimizer algorithms,
+  design invariants, testing strategy.
+- [`docs/REFERENCES.md`](docs/REFERENCES.md) — where every pattern,
+  architecture idea, and practice actually comes from, plus an honest
+  self-assessment against current trends (including real gaps).
 
 ## License & governance
 

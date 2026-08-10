@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dotnet
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Test before releasing
+        run: dotnet test -c Release
+
+      - name: Build binaries for every supported platform
+        run: |
+          chmod +x scripts/publish.sh
+          ./scripts/publish.sh --all
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dotnet/publish/agent-project-*
+          generate_release_notes: true
+          body: |
+            See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/dotnet/CHANGELOG.md) for what changed.
+
+            Download the archive for your platform, extract it, and run the binary directly — no .NET runtime install required (self-contained, single-file). See [dotnet/README.md](https://github.com/${{ github.repository }}/blob/main/dotnet/README.md) for usage.

@@ -11,6 +11,10 @@
     <AnalysisLevel>latest-recommended</AnalysisLevel>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
+    <!-- Single source of truth for the CLI's reported version (see the "version"
+         flag) and release binary naming. Bump alongside CHANGELOG.md. -->
+    <Version>0.1.0</Version>
+
     <!-- Shared package metadata for anything published to NuGet later. -->
     <Authors>Agentic Project Architect contributors</Authors>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
