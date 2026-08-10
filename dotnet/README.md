@@ -87,6 +87,14 @@ Exactly two paths, same as the design brief:
 - **Advanced** (`new --advanced`) — full explicit control over size,
   risk, lifetime, execution mode, schedule, budget, and work pattern.
 
+**The generated base is CLI-agnostic by default.** `AGENTS.md` +
+`.agent/` + `.project/` work with any agentic CLI that reads
+`AGENTS.md` — Claude Code, OpenCode, Codex CLI, or one that doesn't
+exist yet — with zero vendor-specific files. Picking a specific runtime
+(`--runtime claude-code`, etc.) only adds *optional native extras* on
+top (e.g. Claude Code subagents under `.claude/agents/`) — it never
+changes what the agnostic core contains.
+
 ## What gets generated
 
 ```
@@ -109,7 +117,7 @@ my-project/
 ## CLI commands
 
 ```bash
-agent-project new [path] [--simple|--advanced] [--runtime <claude-code|opencode|codex-cli|all>]
+agent-project new [path] [--simple|--advanced] [--runtime <agnostic|claude-code|opencode|codex-cli|all>]
 agent-project validate      <path>
 agent-project status        <path>
 agent-project architecture  <path> [--recommend]

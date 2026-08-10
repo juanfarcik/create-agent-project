@@ -74,13 +74,16 @@ public static class Wizard
 
     private static readonly (string Value, string Label)[] RuntimeChoices =
     {
-        ("claude-code", "Claude Code"),
-        ("opencode", "OpenCode"),
+        ("agnostic", "Just give me the base — works with any agentic CLI, no extras"),
+        ("claude-code", "Claude Code (adds native subagents)"),
+        ("opencode", "OpenCode (adds native subagents)"),
         ("codex-cli", "Codex CLI"),
-        ("all", "Not sure yet — generate for all of them"),
+        ("all", "Generate the native extras for all of them"),
     };
 
-    private static string RuntimeChoice() => Choose("Where will you open this project?", RuntimeChoices, 3);
+    private static string RuntimeChoice() => Choose(
+        "Which CLI do you want extra native integration for? (the base works with any of them either way)",
+        RuntimeChoices, 0);
 
     private static readonly (string Value, string Label)[] SimplePatternChoices =
     {

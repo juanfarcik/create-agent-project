@@ -219,6 +219,7 @@ Open this directory with your agent CLI and let it read `AGENTS.md` first.
             "opencode" => "OpenCode",
             "codex-cli" => "Codex CLI",
             "all" => "your agent CLI of choice",
+            "agnostic" => "whichever agentic CLI you have — Claude Code, OpenCode, Codex CLI, or any other that reads AGENTS.md",
             _ => req.Runtime,
         };
 

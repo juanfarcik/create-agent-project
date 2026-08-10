@@ -53,7 +53,7 @@ public static class Program
 agent-project — Agentic Project Architect
 
 Usage:
-  agent-project new [path] [--simple|--advanced] [--runtime <claude-code|opencode|codex-cli|all>]
+  agent-project new [path] [--simple|--advanced] [--runtime <agnostic|claude-code|opencode|codex-cli|all>]
   agent-project validate <path>
   agent-project status <path>
   agent-project architecture <path> [--recommend]
@@ -131,7 +131,7 @@ Usage:
         var root = path ?? req.Name;
         var result = Api.BuildProject(root, req, arch);
         Console.WriteLine($"\nGenerated project at: {Path.GetFullPath(result.Root)}");
-        Console.WriteLine($"Runtime adapters: {(result.Adapters.Count > 0 ? string.Join(", ", result.Adapters) : "none")}");
+        Console.WriteLine($"Native runtime extras: {(result.Adapters.Count > 0 ? string.Join(", ", result.Adapters) : "none (agnostic base only — works with any AGENTS.md-reading CLI)")}");
         Console.WriteLine($"Next: open {result.Root}/AGENTS.md with your agent runtime.");
         return 0;
     }

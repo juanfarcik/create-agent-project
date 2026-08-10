@@ -23,7 +23,11 @@ public sealed class Requirements
     public string BudgetProfile { get; set; } = "hobby";       // free | ultra-low | hobby | balanced | quality-first | custom
     public string ExecutionMode { get; set; } = "interactive"; // interactive | agent-loop | scheduled | continuous | event-driven
 
-    public string Runtime { get; set; } = "claude-code";       // claude-code | opencode | codex-cli | all
+    // agnostic (default — base only, no vendor extras) | claude-code | opencode | codex-cli | all.
+    // The generated AGENTS.md + .agent/ + .project/ core works with any of these (or any future
+    // AGENTS.md-reading CLI) regardless of this value — it only controls whether vendor-specific
+    // native extras (e.g. Claude Code subagents) get generated on top of that agnostic base.
+    public string Runtime { get; set; } = "agnostic";
     public string HumanInvolvement { get; set; } = "important-decisions";
 
     public string? Schedule { get; set; }

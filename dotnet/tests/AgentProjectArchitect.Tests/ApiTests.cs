@@ -33,6 +33,16 @@ public class ApiTests : IDisposable
         var result = Api.BuildProject(Path.Combine(_tmp, "demo"), req);
         Assert.True(File.Exists(Path.Combine(result.Root, "AGENTS.md")));
         Assert.Equal("demo", result.Requirements.Name);
+        // Default runtime is "agnostic": the base (AGENTS.md/.agent/.project)
+        // works with any CLI without generating vendor-specific extras.
+        Assert.Empty(result.Adapters);
+    }
+
+    [Fact]
+    public void BuildProjectWithClaudeCodeRuntimeGeneratesNativeExtras()
+    {
+        var req = new Requirements { Name = "demo", Objective = "Do a thing", Runtime = "claude-code" };
+        var result = Api.BuildProject(Path.Combine(_tmp, "demo"), req);
         Assert.Contains("claude-code", result.Adapters);
     }
 
