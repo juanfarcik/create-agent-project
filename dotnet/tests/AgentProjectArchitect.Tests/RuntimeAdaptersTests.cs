@@ -43,6 +43,35 @@ public class RuntimeAdaptersTests : IDisposable
     }
 
     [Fact]
+    public void ClaudeCodeAdapterSkipsSkillWhenPatternIsAuto()
+    {
+        var (root, req, arch) = Build("claude-code");
+        Assert.Equal("auto", arch.LoopPattern);
+        RuntimeAdapterRegistry.Default.Generate(root, req, arch);
+        Assert.False(Directory.Exists(Path.Combine(root, ".claude", "skills")));
+    }
+
+    [Fact]
+    public void ClaudeCodeAdapterGeneratesSkillForExplicitPattern()
+    {
+        var req = new Requirements
+        {
+            Name = "demo", Objective = "Do the thing", Runtime = "claude-code",
+            LoopPattern = "debate-critic",
+        };
+        var arch = ArchitectureRecommender.Recommend(req);
+        var root = Path.Combine(_tmp, "demo-skill");
+        ScaffoldGenerator.Generate(root, req, arch);
+        RuntimeAdapterRegistry.Default.Generate(root, req, arch);
+
+        var skillPath = Path.Combine(root, ".claude", "skills", "debate-critic", "SKILL.md");
+        Assert.True(File.Exists(skillPath));
+        var content = File.ReadAllText(skillPath);
+        Assert.StartsWith("---\nname: debate-critic\n", content);
+        Assert.Contains("PROPOSE -> CRITIQUE", content);
+    }
+
+    [Fact]
     public void OpenCodeAdapter()
     {
         var (root, req, arch) = Build("opencode");

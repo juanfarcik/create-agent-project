@@ -15,7 +15,10 @@ public static class ScaffoldGenerator
 {
     /// <summary>Subdirectories created under <c>.project/</c> for durable, categorized output.</summary>
     public static readonly string[] ProjectSubdirs =
-        { "outputs", "research", "plans", "experiments", "reviews", "checkpoints", "telemetry" };
+        {
+            "specs", "references", "outputs", "research", "plans",
+            "experiments", "reviews", "checkpoints", "telemetry",
+        };
 
     private static readonly ISerializer YamlSerializer = new SerializerBuilder()
         .WithNamingConvention(UnderscoredNamingConvention.Instance)
@@ -71,6 +74,10 @@ public static class ScaffoldGenerator
             "Iteration, budget, and task counters", MetricsMd(req));
         WriteMd(root, Path.Combine(".project", "outputs", "README.md"), "outputs-guide",
             "What kind of durable output belongs in this folder", OutputsReadme(req));
+        WriteMd(root, Path.Combine(".project", "specs", "README.md"), "specs-guide",
+            "How to write a spec for a feature or deliverable", SpecsReadme());
+        WriteMd(root, Path.Combine(".project", "references", "README.md"), "references-guide",
+            "Where the human's own source material lives", ReferencesReadme());
     }
 
     private static void Write(string root, string relative, string content)
@@ -629,4 +636,54 @@ and the "Growing the structure" section in the root `AGENTS.md` for when
 a subfolder here should get its own `AGENTS.md`.
 """;
     }
+
+    private static string SpecsReadme() => """
+# Specs
+
+`goal.md` stays high-level and stable — the project's overall objective
+and Definition of Done. As soon as the project has more than one
+distinct feature or deliverable, each one gets its own spec file here
+instead of piling more detail into `goal.md`.
+
+One file per feature/deliverable, named for what it covers (e.g.
+`login-flow.md`, `chapter-3.md`, `pricing-page.md`). Each spec should
+cover, briefly:
+
+- **What** — the concrete thing being built/written/produced
+- **Why** — the real need behind it (see "clarify before you commit" in
+  the root `AGENTS.md` — don't skip straight to *what* without this)
+- **Acceptance criteria** — how to know this specific piece is done,
+  distinct from the project's overall Definition of Done
+- **Status** — draft / ready / in progress / done
+
+Keep specs small and disposable — a spec for a feature that's done is
+historical record, not something to keep editing. This mirrors how
+spec-driven agentic workflows (e.g. GitHub's spec-kit, Kiro) separate
+"what to build" from "how" (`plans/`) and "the work itself"
+(`outputs/`) — see this project's `docs/REFERENCES.md`.
+
+Don't create a spec for trivial one-off tasks — that's what
+`backlog.md` is for. Specs are for anything substantial enough that
+"what does done look like" needs to be written down before starting.
+""";
+
+    private static string ReferencesReadme() => """
+# References
+
+This is where the human's own source material lives — things the agent
+should treat as ground truth or inspiration, not generate itself:
+style guides, brand guidelines, source documents, prior work, links,
+research the human already did before this project started.
+
+Drop files here directly (text, markdown, whatever). If something here
+gets used as the basis for a decision or a spec, note that connection
+in `decisions.md` or the relevant file under `specs/` — a reference
+sitting unused in this folder isn't doing anything; citing it where
+it's actually applied is what makes it useful context instead of noise.
+
+This is different from `.project/context.md` (durable facts the agent
+itself has learned/confirmed) and `.project/resources.md` (external
+tools/services the project depends on) — this folder is source material
+the human brought in from outside.
+""";
 }

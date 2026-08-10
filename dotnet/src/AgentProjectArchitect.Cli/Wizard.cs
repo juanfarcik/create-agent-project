@@ -40,6 +40,25 @@ public static class Wizard
         return options[defaultIdx].Value;
     }
 
+    /// <summary>Pick zero or more options by comma-separated number, e.g. "1,3". Empty = none.</summary>
+    private static List<string> ChooseMulti(string question, (string Value, string Label)[] options)
+    {
+        Console.WriteLine($"\n{question}");
+        for (var i = 0; i < options.Length; i++)
+            Console.WriteLine($"  {i + 1}. {options[i].Label}");
+        Console.Write("> (comma-separated numbers, or blank for none): ");
+        var raw = (Console.ReadLine() ?? "").Trim();
+        if (raw.Length == 0) return new List<string>();
+
+        var result = new List<string>();
+        foreach (var part in raw.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries))
+        {
+            if (int.TryParse(part, out var idx) && idx >= 1 && idx <= options.Length)
+                result.Add(options[idx - 1].Value);
+        }
+        return result;
+    }
+
     private static int IndexOf((string Value, string Label)[] options, string value, int fallback)
     {
         for (var i = 0; i < options.Length; i++)
@@ -136,7 +155,7 @@ public static class Wizard
     // Advanced
     // -------------------------------------------------------------
 
-    public static Requirements Advanced()
+    public static (Requirements Requirements, List<string> AdditionalRoles) Advanced()
     {
         Console.WriteLine("\n== Advanced setup ==");
         Console.WriteLine("(Every field below shapes the generated architecture.)\n");
@@ -220,7 +239,15 @@ public static class Wizard
 
         var runtime = RuntimeChoice();
 
-        return new Requirements
+        Console.WriteLine("\nThe architecture engine already picks roles automatically based on " +
+                           "everything above. Only add here if you know you want a specific extra " +
+                           "specialist available (on-demand — it won't run unless invoked):");
+        var roleOptions = Roles.Names
+            .Select(r => (r, $"{r} — {Roles.All[r].Description}"))
+            .ToArray();
+        var additionalRoles = ChooseMulti("Additional specialist roles (optional)", roleOptions);
+
+        var req = new Requirements
         {
             Name = Slugify(name),
             Objective = objective,
@@ -240,5 +267,6 @@ public static class Wizard
             HumanInvolvement = human,
             ExperienceLevel = "tech",
         };
+        return (req, additionalRoles);
     }
 }

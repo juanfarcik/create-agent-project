@@ -46,9 +46,37 @@ inventing it, that's stated too.
 ## Runtime conventions this tool generates for
 
 - **`AGENTS.md`** — an open, cross-vendor convention for giving coding agents project instructions, at [agents.md](https://agents.md/). Not invented by this project; we generate to the convention.
-- **Claude Code `CLAUDE.md` and subagents (`.claude/agents/*.md`)** — Anthropic's documented Claude Code features. [docs.claude.com](https://docs.claude.com/en/docs/claude-code) (subagents, memory/CLAUDE.md).
+- **Claude Code `CLAUDE.md` and subagents (`.claude/agents/*.md`)** — Anthropic's documented Claude Code features: [memory/CLAUDE.md](https://code.claude.com/docs/en/memory), [sub-agents](https://code.claude.com/docs/en/sub-agents).
 - **OpenCode** — open-source AI coding agent, [opencode.ai](https://opencode.ai/).
 - **Codex CLI** — OpenAI's coding agent CLI; reads `AGENTS.md` by the same open convention above.
+- **Claude Code Skills (`.claude/skills/<name>/SKILL.md`)** — Anthropic's documented Claude Code Skills feature, a distinct mechanism from subagents for packaging a reusable procedure. [code.claude.com/docs/en/skills](https://code.claude.com/docs/en/skills).
+
+## Structure conventions we generate
+
+- **Frontmatter metadata on every `.md` file** (`type` + one-line `purpose`) —
+  not tied to a single citable source; this is the same general technique
+  static-site generators (Jekyll, Hugo) and note-taking tools (Obsidian)
+  use to make plain markdown machine-classifiable without a database.
+  General prior art, not a specific paper.
+- **Nested `AGENTS.md`/`CLAUDE.md` for subdirectories** — Claude Code
+  reads project memory hierarchically; documented at
+  [code.claude.com/docs/en/memory](https://code.claude.com/docs/en/memory).
+  We just tell the generated project's own `AGENTS.md` to use this
+  explicitly instead of leaving it undiscovered.
+- **`.project/specs/`, one file per feature/deliverable, separate from the
+  project-wide goal** — direct practical inspiration from **spec-driven
+  development**: GitHub's [spec-kit](https://github.com/github/spec-kit)
+  (2025) and AWS/Kiro's spec-driven workflow, both of which separate
+  "what to build" (spec) from "how" (plan) from "the work" (implementation).
+  We scaled this down significantly — no multi-phase CLI commands, just
+  the file-separation idea, appropriate for a personal-project scaffold
+  instead of an enterprise agentic SDLC tool.
+- **`.project/references/`** — a folder for the human's own source
+  material, distinct from `context.md` (facts the agent has learned) and
+  `resources.md` (external tools/services). Not adapted from a specific
+  named source — general documentation-organization practice (separating
+  primary sources from derived notes), applied here for the first time
+  by this project as far as we know.
 
 ## Ideas adapted from a specific project (with attribution)
 
@@ -104,11 +132,14 @@ also the open gaps already tracked elsewhere in this repo
   generate or reference any MCP server config. If a generated project
   needs real external tool access beyond what's built into Claude
   Code/OpenCode/Codex, this project currently has nothing to say about it.
-- **No Claude Code Skills (`SKILL.md`) support.** Skills are a distinct,
-  newer packaging mechanism from subagents (this very session runs
-  inside a harness that uses them) — a reusable capability with its own
-  manifest, separate from `.claude/agents/*.md`. We only generate
-  subagents. Worth adding as a `Skill`-shaped adapter output eventually.
+- ~~No Claude Code Skills (`SKILL.md`) support~~ — **closed.** The
+  Claude Code adapter now also generates `.claude/skills/<pattern-id>/SKILL.md`
+  for the project's chosen work pattern (skipped when the pattern is
+  `auto`, since there's no specific procedure to package). Skills and
+  subagents are different mechanisms — a subagent is delegated to and
+  runs in an isolated context; a Skill is loaded into the current
+  agent's own context to follow a procedure. Roles map to subagents
+  (delegation); a work pattern is a procedure, so it maps to a Skill.
 - **No real evaluation harness.** The `evaluator` role is a *prompt*
   telling an agent to check its own work — there's no structured rubric,
   no integration with an actual eval framework (e.g. promptfoo,

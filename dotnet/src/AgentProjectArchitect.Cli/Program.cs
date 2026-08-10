@@ -82,7 +82,8 @@ Usage:
         }
 
         Requirements req;
-        if (advanced) req = Wizard.Advanced();
+        List<string> additionalRoles = new();
+        if (advanced) (req, additionalRoles) = Wizard.Advanced();
         else if (simple) req = Wizard.Simple();
         else
         {
@@ -91,12 +92,18 @@ Usage:
             Console.WriteLine("  2. Advanced — let me configure size, risk, execution mode, budget, etc.");
             Console.Write("> [1]: ");
             var choice = (Console.ReadLine() ?? "").Trim();
-            req = choice == "2" ? Wizard.Advanced() : Wizard.Simple();
+            if (choice == "2") (req, additionalRoles) = Wizard.Advanced();
+            else req = Wizard.Simple();
         }
 
         if (runtime != null) req.Runtime = runtime;
 
         var arch = Api.Preview(req);
+        foreach (var role in additionalRoles)
+        {
+            if (!arch.AgentNames().Contains(role))
+                arch.Agents.Add(new AgentSpec(role, "on-demand", "balanced"));
+        }
         PrintArchitecture(arch);
 
         while (true)
