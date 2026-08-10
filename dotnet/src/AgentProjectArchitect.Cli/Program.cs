@@ -105,6 +105,7 @@ Usage:
                 arch.Agents.Add(new AgentSpec(role, "on-demand", "balanced"));
         }
         PrintArchitecture(arch);
+        PrintProjectStructure(req, arch);
 
         while (true)
         {
@@ -115,6 +116,7 @@ Usage:
             {
                 arch = ArchitectureOptimizer.Optimize(arch, req);
                 PrintArchitecture(arch, "Optimized Architecture");
+                PrintProjectStructure(req, arch);
                 continue;
             }
             if (choice == "t")
@@ -125,6 +127,7 @@ Usage:
                 {
                     arch = ArchitectureProfileCatalog.Build(name);
                     PrintArchitecture(arch, $"Architecture: {name}");
+                    PrintProjectStructure(req, arch);
                 }
                 continue;
             }
@@ -322,6 +325,18 @@ Usage:
         {
             Console.WriteLine("\nNotes:");
             foreach (var n in arch.Notes) Console.WriteLine($"  {n}");
+        }
+        Console.WriteLine();
+    }
+
+    private static void PrintProjectStructure(Requirements req, Architecture arch)
+    {
+        var decisions = ProjectComponentCatalog.Decide(req, arch);
+        Console.WriteLine("Project structure (.project/):");
+        foreach (var d in decisions)
+        {
+            var mark = d.Included ? "✓" : "○";
+            Console.WriteLine($"  {mark} {d.Id,-12} {d.Reason}");
         }
         Console.WriteLine();
     }

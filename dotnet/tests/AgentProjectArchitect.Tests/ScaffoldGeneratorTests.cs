@@ -26,17 +26,47 @@ public class ScaffoldGeneratorTests : IDisposable
             ".agent/project.yaml", ".agent/architecture.yaml", ".agent/policies.yaml",
             ".project/goal.md", ".project/state.md", ".project/backlog.md",
             ".project/decisions.md", ".project/learnings.md", ".project/constraints.md",
-            ".project/resources.md", ".project/metrics.md", ".project/outputs/README.md",
-            ".project/specs/README.md", ".project/references/README.md",
+            ".project/resources.md", ".project/metrics.md",
         };
         foreach (var f in expected)
             Assert.True(File.Exists(Path.Combine(root, f.Replace('/', Path.DirectorySeparatorChar))), $"missing {f}");
 
-        foreach (var sub in ScaffoldGenerator.ProjectSubdirs)
-            Assert.True(Directory.Exists(Path.Combine(root, ".project", sub)));
+        // Component subfolders are conditional — only the ones the catalog
+        // includes for this requirements/architecture combo should exist.
+        foreach (var d in ProjectComponentCatalog.Decide(req, arch))
+        {
+            var exists = Directory.Exists(Path.Combine(root, ".project", d.Id));
+            Assert.True(exists == d.Included, $"{d.Id}: expected included={d.Included} but exists={exists}");
+        }
 
         foreach (var agent in arch.Agents)
             Assert.True(File.Exists(Path.Combine(root, ".agent", "prompts", $"{agent.Role}.md")));
+    }
+
+    [Fact]
+    public void TinyProjectSkipsSpecsAndReferences()
+    {
+        var req = new Requirements { Name = "tiny-demo", Objective = "Write a haiku", Size = "tiny" };
+        var arch = ArchitectureRecommender.Recommend(req);
+        var root = Path.Combine(_tmp, "tiny-demo");
+        ScaffoldGenerator.Generate(root, req, arch);
+
+        Assert.False(Directory.Exists(Path.Combine(root, ".project", "specs")));
+        Assert.False(Directory.Exists(Path.Combine(root, ".project", "references")));
+        Assert.True(Directory.Exists(Path.Combine(root, ".project", "outputs")));
+    }
+
+    [Fact]
+    public void ReadmeExplainsWhichComponentsWereIncludedAndWhy()
+    {
+        var req = new Requirements { Name = "demo-explain", Objective = "Do the thing", Size = "tiny" };
+        var arch = ArchitectureRecommender.Recommend(req);
+        var root = Path.Combine(_tmp, "demo-explain");
+        ScaffoldGenerator.Generate(root, req, arch);
+
+        var readme = File.ReadAllText(Path.Combine(root, "README.md"));
+        Assert.Contains("✓ `.project/outputs/`", readme);
+        Assert.Contains("○ `.project/specs/`", readme);
     }
 
     [Fact]

@@ -53,6 +53,16 @@ inventing it, that's stated too.
 
 ## Structure conventions we generate
 
+- **Proportional `.project/` structure** (`ProjectComponentCatalog`) — each
+  of the 9 optional subfolders (`specs`, `references`, `research`, `plans`,
+  `experiments`, `reviews`, `checkpoints`, `telemetry`, plus always-on
+  `outputs`) is generated only when a concrete rule about the requirements
+  or architecture says it's useful — not always, regardless of project
+  size. This is a direct application of the same minimalism principle
+  already used for agent selection (YAGNI, cited above), applied to the
+  file/folder structure instead of just the agent roster. The `new`
+  command's preview shows every decision with its reason (✓ included /
+  ○ skipped) before anything is written to disk.
 - **Frontmatter metadata on every `.md` file** (`type` + one-line `purpose`) —
   not tied to a single citable source; this is the same general technique
   static-site generators (Jekyll, Hugo) and note-taking tools (Obsidian)
