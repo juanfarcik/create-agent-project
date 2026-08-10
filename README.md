@@ -19,9 +19,21 @@ author also works professionally on agentic orchestration for
 engineering teams — a separate, commercial effort, unrelated to what
 this repo does.)*
 
+## Quick start
+
+```bash
+# Download a release binary (no .NET install needed) from:
+# https://github.com/juanfarcik/create-agent-project/releases
+tar -xzf create-agent-project-<your-platform>.tar.gz
+./AgentProjectArchitect.Cli new
+```
+
+Answer a few plain-language questions, get a project folder. Open it
+with Claude Code, OpenCode, or Codex CLI and start talking to it.
+
 **The project lives in [`dotnet/`](dotnet/).** See
-[`dotnet/README.md`](dotnet/README.md) for install, usage, architecture
-profiles, work patterns, and everything else.
+[`dotnet/README.md`](dotnet/README.md) for every other install option,
+full usage, architecture profiles, and work patterns.
 
 ## License & governance
 
