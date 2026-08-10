@@ -9,11 +9,15 @@ a portable, CLI-agnostic project structure (`AGENTS.md` + `.agent/` +
 **Codex CLI**, or any other `AGENTS.md`-reading tool — no vendor
 lock-in by default.
 
-**Who it's for:** individuals working solo — not enterprise teams —
-across any domain: code, writing, research, creative work, business
-planning. If you're looking for agentic orchestration at company
-scale, that's a different, commercial problem this project explicitly
-does not try to solve (see `dotnet/README.md` for what does).
+**Who it's for:** one person, working alone, on anything — code, a
+book, a research project, a business plan — who wants a solid
+structure to start working with an AI CLI, without having to learn
+"agent architecture" first.
+
+*(This is a personal, open research project, not a company. Its
+author also works professionally on agentic orchestration for
+engineering teams — a separate, commercial effort, unrelated to what
+this repo does.)*
 
 **The project lives in [`dotnet/`](dotnet/).** See
 [`dotnet/README.md`](dotnet/README.md) for install, usage, architecture
