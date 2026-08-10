@@ -1,0 +1,26 @@
+name: Feature request
+description: Propose a new role, architecture profile, work pattern, or runtime adapter
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What personal-project scenario does this solve?
+      description: >
+        This project's scope is deliberately narrow (Section 1-2 of the
+        design brief: minimum viable architecture, personal projects, not
+        enterprise orchestration). Ground the request in a concrete
+        scenario so it's clear it fits.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: New role? New profile? New pattern? New runtime adapter? Be specific.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: What did you consider instead, and why not that?

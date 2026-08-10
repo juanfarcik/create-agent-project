@@ -1,0 +1,17 @@
+project:
+  name: software-project
+  domain: software
+  objective: Build and ship a small SaaS billing dashboard.
+  definition_of_done: Dashboard is deployed, automated tests pass, and QA has verified the golden path plus edge cases.
+requirements:
+  size: medium
+  lifetime: weeks
+  autonomy: collaborative
+  risk: medium
+  budget_profile: balanced
+  execution_mode: interactive
+  human_involvement: per-phase
+  schedule: ""
+  loop_pattern: auto
+runtime: all
+experience_level: tech

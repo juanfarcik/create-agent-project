@@ -1,0 +1,29 @@
+architecture:
+  profile: research
+  loop_pattern: auto
+  memory: filesystem
+  checkpoints: true
+  complexity: LOW
+  estimated:
+    calls_per_run: 5-10
+    context: LOW
+    cost: LOW
+  agents:
+    - role: orchestrator
+    mode: always
+    model_tier: balanced
+    - role: researcher
+    mode: always
+    model_tier: cheap
+    - role: analyst
+    mode: always
+    model_tier: balanced
+    - role: critic
+    mode: on-demand
+    model_tier: balanced
+  human_gates:
+    - budget threshold
+    - irreversible actions
+  notes:
+    - Researcher -> Analyst -> Critic -> Synthesis, for evidence-heavy work.
+    - "WARNING: architecture weight (7) is high for budget profile 'ultra-low'. Consider --optimize."

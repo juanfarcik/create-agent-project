@@ -1,0 +1,31 @@
+name: .NET CI
+
+on:
+  push:
+    branches: [main]
+    paths: ["dotnet/**"]
+  pull_request:
+    paths: ["dotnet/**"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dotnet
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - name: Restore
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore -c Release
+      - name: Test
+        run: dotnet test --no-build -c Release
+      - name: Smoke-test CLI
+        run: |
+          dotnet run --project src/AgentProjectArchitect.Cli -- templates
+          dotnet run --project src/AgentProjectArchitect.Cli -- compare
+          dotnet run --project src/AgentProjectArchitect.Cli -- patterns

@@ -1,0 +1,3 @@
+# Ties GitHub's review-request automation to the BDFL model in
+# dotnet/GOVERNANCE.md: every change needs the maintainer's review before merge.
+* @juanfarcik

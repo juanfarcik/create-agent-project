@@ -1,0 +1,20 @@
+budget:
+  profile: balanced
+  warn_at_pct: 70
+  throttle_at_pct: 85
+  stop_at_pct: 100
+permissions:
+  spend_money: false
+  contact_external_people: false
+  publish_externally: false
+  perform_irreversible_actions: false
+failure_policy:
+  on_failure_1: retry
+  on_failure_2: try alternative strategy
+  on_failure_3: reassess
+  on_repeated_failure: escalate to human
+human_gates:
+- budget threshold
+- conflicting agent results
+- important decisions
+- irreversible actions

@@ -1,0 +1,17 @@
+project:
+  name: business-research
+  domain: business
+  objective: Research a market opportunity for a new product, analyze competitors, estimate financial viability, and produce a strategy that keeps updating as new information arrives.
+  definition_of_done: A strategy document exists with market sizing, competitor analysis, financial viability estimate, and it is kept current in .project/outputs/.
+requirements:
+  size: medium
+  lifetime: weeks
+  autonomy: collaborative
+  risk: medium
+  budget_profile: balanced
+  execution_mode: agent-loop
+  human_involvement: important-decisions
+  schedule: ''
+  loop_pattern: auto
+runtime: claude-code
+experience_level: tech

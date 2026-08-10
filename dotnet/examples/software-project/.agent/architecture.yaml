@@ -1,0 +1,35 @@
+architecture:
+  profile: software-standard
+  loop_pattern: auto
+  memory: filesystem
+  checkpoints: true
+  complexity: MEDIUM
+  estimated:
+    calls_per_run: 10-25
+    context: MEDIUM
+    cost: MEDIUM
+  agents:
+  - role: orchestrator
+    mode: always
+    model_tier: balanced
+  - role: architect
+    mode: on-demand
+    model_tier: strong
+  - role: coder
+    mode: always
+    model_tier: balanced
+  - role: tester
+    mode: always
+    model_tier: cheap
+  - role: code-reviewer
+    mode: always
+    model_tier: balanced
+  - role: bi-analyst
+    mode: on-demand
+    model_tier: cheap
+  human_gates:
+  - budget threshold
+  - important decisions
+  - irreversible actions
+  notes:
+  - 'Standard product build: design on-demand, implementation with tests and review as gates.'

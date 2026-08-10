@@ -1,0 +1,30 @@
+architecture:
+  profile: collaborative
+  loop_pattern: auto
+  memory: filesystem
+  checkpoints: true
+  complexity: MEDIUM
+  estimated:
+    calls_per_run: 10-20
+    context: MEDIUM
+    cost: MEDIUM
+  agents:
+  - role: orchestrator
+    mode: always
+    model_tier: strong
+  - role: researcher
+    mode: always
+    model_tier: cheap
+  - role: creative-director
+    mode: always
+    model_tier: balanced
+  - role: critic
+    mode: on-demand
+    model_tier: balanced
+  human_gates:
+  - budget threshold
+  - conflicting agent results
+  - important decisions
+  - irreversible actions
+  notes:
+  - Supervisor + workers. Justified when parallel work has real value.
