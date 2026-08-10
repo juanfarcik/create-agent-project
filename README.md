@@ -1,5 +1,7 @@
 # create-agent-project
 
+*(🇦🇷 [Leer en español](README.es.md))*
+
 A **deterministic scaffold generator for agentic AI projects.** No LLM
 decides the architecture — a rules engine reads your requirements
 (size, risk, domain, autonomy) and picks the smallest agent setup that
