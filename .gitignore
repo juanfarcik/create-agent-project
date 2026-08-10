@@ -1,8 +1,2 @@
-__pycache__/
-*.pyc
-*.egg-info/
-build/
-dist/
-.venv/
-venv/
-.pytest_cache/
+# The actual project lives in dotnet/ (see dotnet/.gitignore for its
+# bin/obj ignores). Nothing Python-specific belongs here anymore.

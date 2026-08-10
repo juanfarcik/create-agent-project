@@ -59,15 +59,23 @@ dotnet publish src/AgentProjectArchitect.Cli -c Release -o out
 ./out/AgentProjectArchitect.Cli new
 ```
 
-For a dependency-free single-file binary (no .NET runtime required on
-the target machine), publish with AOT:
+For a single-file binary that doesn't require installing the .NET
+runtime, publish self-contained (no AOT):
 
 ```bash
 dotnet publish src/AgentProjectArchitect.Cli -c Release -r <RID> \
-  --self-contained -p:PublishAot=true -o out-aot
+  --self-contained -p:PublishSingleFile=true -o out
 ```
 
 (`<RID>` e.g. `osx-arm64`, `linux-x64`, `win-x64`.)
+
+**Native AOT (`-p:PublishAot=true`) does not work yet.** It compiles, but
+`validate`/`architecture`/`optimize` — anything that reads `.agent/*.yaml`
+back — crashes at runtime ("Exception during deserialization"), because
+YamlDotNet's default (de)serializer relies on reflection, which trimming
+removes. Fixing this means switching to YamlDotNet's source-generated
+static context (`StaticSerializerBuilder`/`StaticDeserializerBuilder`,
+see their AOT docs) — tracked as a known limitation, contributions welcome.
 
 ## Wizard
 
