@@ -26,7 +26,7 @@ public class ScaffoldGeneratorTests : IDisposable
             ".agent/project.yaml", ".agent/architecture.yaml", ".agent/policies.yaml",
             "project/goal.md", "project/state.md", "project/backlog.md",
             "project/decisions.md", "project/learnings.md", "project/constraints.md",
-            "project/resources.md", "project/metrics.md",
+            "project/resources.md", "project/metrics.md", "project/CONTEXT_BUDGET.md",
         };
         foreach (var f in expected)
             Assert.True(File.Exists(Path.Combine(root, f.Replace('/', Path.DirectorySeparatorChar))), $"missing {f}");

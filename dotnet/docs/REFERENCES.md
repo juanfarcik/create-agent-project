@@ -162,7 +162,14 @@ also the open gaps already tracked elsewhere in this repo
 - **No token/cost telemetry, no real cost simulation.** Flagged
   repeatedly earlier in this project's history and still true: `est_cost`
   is a qualitative LOW/MEDIUM/HIGH label, not a number derived from
-  actual model pricing.
+  actual model pricing. `project/CONTEXT_BUDGET.md` (generated in every
+  project) documents the structural conventions already in place
+  (`state.md` over full history, hierarchical `AGENTS.md`, Skills loaded
+  on demand) and points at real external projects to wire in if needed
+  ([LLMLingua](https://github.com/microsoft/LLMLingua) for prompt
+  compression, prompt caching for stable content) — this is guidance,
+  not measurement or automatic compression, so the gap above still
+  stands as-is.
 - **No import of existing agent templates/architectures** (e.g. reading
   a LangGraph or CrewAI project and normalizing it into our model) —
   originally scoped as a differentiator, never built.

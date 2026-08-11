@@ -136,6 +136,7 @@ my-project/
 │   ├── references/                # the human's own source material (style guides, links, ...)
 │   ├── outputs/                    # the actual durable output — domain-aware README seeded in
 │   ├── state.md, backlog.md, decisions.md, learnings.md, constraints.md, ...
+│   ├── CONTEXT_BUDGET.md          # conventions + optional integrations for keeping token usage low
 │   └── research/ plans/ experiments/ reviews/ checkpoints/ telemetry/
 ├── .claude/agents/*.md          # generated if targeting Claude Code
 ├── .claude/skills/<pattern>/    # generated if targeting Claude Code and a work pattern was picked
