@@ -75,26 +75,39 @@ public static class Program
         var advanced = args.Contains("--advanced") || args.Contains("--guided");
         string? runtime = null;
         string? path = null;
+        string? lang = null;
 
         for (var i = 0; i < args.Length; i++)
         {
             if (args[i] == "--runtime" && i + 1 < args.Length) runtime = args[++i];
+            else if (args[i] == "--lang" && i + 1 < args.Length) lang = args[++i];
             else if (!args[i].StartsWith("--", StringComparison.Ordinal)) path = args[i];
         }
 
+        lang ??= Wizard.AskLanguage();
+
         Requirements req;
         List<string> additionalRoles = new();
-        if (advanced) (req, additionalRoles) = Wizard.Advanced();
-        else if (simple) req = Wizard.Simple();
+        if (advanced) (req, additionalRoles) = Wizard.Advanced(lang);
+        else if (simple) req = Wizard.Simple(lang);
         else
         {
-            Console.WriteLine("How do you want to set this up?\n");
-            Console.WriteLine("  1. Simple — I don't know/care about agent architecture, just ask me the basics");
-            Console.WriteLine("  2. Advanced — let me configure size, risk, execution mode, budget, etc.");
+            if (lang == "es")
+            {
+                Console.WriteLine("\n¿Cómo querés configurarlo?\n");
+                Console.WriteLine("  1. Simple — no sé/no me importa la arquitectura de agentes, preguntame lo básico");
+                Console.WriteLine("  2. Avanzado — dejame configurar tamaño, riesgo, modo de ejecución, presupuesto, etc.");
+            }
+            else
+            {
+                Console.WriteLine("\nHow do you want to set this up?\n");
+                Console.WriteLine("  1. Simple — I don't know/care about agent architecture, just ask me the basics");
+                Console.WriteLine("  2. Advanced — let me configure size, risk, execution mode, budget, etc.");
+            }
             Console.Write("> [1]: ");
             var choice = (Console.ReadLine() ?? "").Trim();
-            if (choice == "2") (req, additionalRoles) = Wizard.Advanced();
-            else req = Wizard.Simple();
+            if (choice == "2") (req, additionalRoles) = Wizard.Advanced(lang);
+            else req = Wizard.Simple(lang);
         }
 
         if (runtime != null) req.Runtime = runtime;

@@ -61,6 +61,10 @@ public static class CliHelp
                                      Code subagents/skills) layered on top of the
                                      agnostic AGENTS.md + .agent/ + project/ base —
                                      it never changes what the agnostic base contains.
+              --lang <value>         en (default) | es — language for the wizard's
+                                     questions and options. If omitted, the wizard
+                                     asks. Only affects the wizard prompts, not the
+                                     generated project files, which stay in English.
 
             Before anything is written, you'll see:
               - the recommended architecture (agents, human approval gates, cost)
