@@ -97,8 +97,8 @@ public static class Patterns
             "Agents don't hand off directly — they read/write a shared project state and act whenever " +
             "they have something useful to contribute, in any order.",
             NoOverrides, NoForcedRoles, null,
-            "Blackboard coordination: do not wait for explicit handoff. Check `.project/state.md` and " +
-            "`.project/backlog.md` for anything you can usefully act on, act, then update state for others.",
+            "Blackboard coordination: do not wait for explicit handoff. Check `project/state.md` and " +
+            "`project/backlog.md` for anything you can usefully act on, act, then update state for others.",
             "SHARED STATE <-> AGENT A / AGENT B / AGENT C  (each acts opportunistically)"),
 
         new("scheduled-digest", "Scheduled digest",

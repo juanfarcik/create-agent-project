@@ -11,7 +11,7 @@ Every morning, spend 30 minutes researching experimental jazz production techniq
 
 ## Definition of Done
 
-A short daily report exists under .project/outputs/ with at least one concrete, actionable technique.
+A short daily report exists under project/outputs/ with at least one concrete, actionable technique.
 
 ## Domain
 

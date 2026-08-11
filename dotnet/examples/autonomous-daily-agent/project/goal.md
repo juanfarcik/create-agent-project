@@ -11,7 +11,7 @@ Continuously monitor a project's backlog, pick the highest-value next action, an
 
 ## Definition of Done
 
-Backlog trends toward zero; every action taken is logged in .project/decisions.md.
+Backlog trends toward zero; every action taken is logged in project/decisions.md.
 
 ## Domain
 

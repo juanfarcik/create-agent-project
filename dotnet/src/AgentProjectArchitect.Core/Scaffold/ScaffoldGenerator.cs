@@ -7,14 +7,14 @@ namespace AgentProjectArchitect.Core;
 /// Generates the portable project scaffold:
 ///   AGENTS.md, README.md, GETTING_STARTED.md
 ///   .agent/{project.yaml, architecture.yaml, policies.yaml, prompts/&lt;role&gt;.md}
-///   .project/{goal,context,state,backlog,decisions,learnings,constraints,resources,metrics}.md
-///   .project/{outputs,research,plans,experiments,reviews,checkpoints,telemetry}/
+///   project/{goal,context,state,backlog,decisions,learnings,constraints,resources,metrics}.md
+///   project/{outputs,research,plans,experiments,reviews,checkpoints,telemetry}/
 /// Runtime adapters (.claude/, .opencode/, .codex/) are generated separately.
 /// </summary>
 public static class ScaffoldGenerator
 {
     /// <summary>
-    /// All possible <c>.project/</c> subfolders this tool knows how to generate.
+    /// All possible <c>project/</c> subfolders this tool knows how to generate.
     /// Which ones actually get created for a given project is decided by
     /// <see cref="ProjectComponentCatalog"/>, not this fixed list — a trivial
     /// project doesn't get the same nine folders as a complex one.
@@ -26,7 +26,7 @@ public static class ScaffoldGenerator
         .DisableAliases()
         .Build();
 
-    /// <summary>Writes the full portable scaffold (AGENTS.md, .agent/, .project/) under <paramref name="root"/>.</summary>
+    /// <summary>Writes the full portable scaffold (AGENTS.md, .agent/, project/) under <paramref name="root"/>.</summary>
     public static void Generate(string root, Requirements req, Architecture arch)
     {
         var decisions = ProjectComponentCatalog.Decide(req, arch);
@@ -34,9 +34,9 @@ public static class ScaffoldGenerator
 
         Directory.CreateDirectory(root);
         Directory.CreateDirectory(Path.Combine(root, ".agent", "prompts"));
-        Directory.CreateDirectory(Path.Combine(root, ".project"));
+        Directory.CreateDirectory(Path.Combine(root, "project"));
         foreach (var sub in included)
-            Directory.CreateDirectory(Path.Combine(root, ".project", sub));
+            Directory.CreateDirectory(Path.Combine(root, "project", sub));
 
         WriteMd(root, "AGENTS.md", "agent-instructions",
             "Entry point every agent runtime reads first", AgentsMd(req, arch));
@@ -58,37 +58,37 @@ public static class ScaffoldGenerator
             }
         }
 
-        WriteMd(root, Path.Combine(".project", "goal.md"), "goal",
+        WriteMd(root, Path.Combine("project", "goal.md"), "goal",
             "Objective and Definition of Done for this project", GoalMd(req));
-        WriteMd(root, Path.Combine(".project", "context.md"), "context",
+        WriteMd(root, Path.Combine("project", "context.md"), "context",
             "Durable background facts agents should remember", ContextMd(req));
-        WriteMd(root, Path.Combine(".project", "state.md"), "state",
+        WriteMd(root, Path.Combine("project", "state.md"), "state",
             "Current project status — reality now, not history", StateMd());
-        WriteMd(root, Path.Combine(".project", "backlog.md"), "backlog",
+        WriteMd(root, Path.Combine("project", "backlog.md"), "backlog",
             "Actionable next work", BacklogMd());
-        WriteMd(root, Path.Combine(".project", "decisions.md"), "decisions",
+        WriteMd(root, Path.Combine("project", "decisions.md"), "decisions",
             "Log of deliberate, non-trivial choices", DecisionsMd());
-        WriteMd(root, Path.Combine(".project", "learnings.md"), "learnings",
+        WriteMd(root, Path.Combine("project", "learnings.md"), "learnings",
             "Patterns, pitfalls, and preferences discovered while working", LearningsMd());
-        WriteMd(root, Path.Combine(".project", "constraints.md"), "constraints",
+        WriteMd(root, Path.Combine("project", "constraints.md"), "constraints",
             "Human approval gates and limits for this project", ConstraintsMd(req, arch));
-        WriteMd(root, Path.Combine(".project", "resources.md"), "resources",
+        WriteMd(root, Path.Combine("project", "resources.md"), "resources",
             "External resources in use by this project", ResourcesMd());
-        WriteMd(root, Path.Combine(".project", "metrics.md"), "metrics",
+        WriteMd(root, Path.Combine("project", "metrics.md"), "metrics",
             "Iteration, budget, and task counters", MetricsMd(req));
         if (included.Contains("outputs"))
         {
-            WriteMd(root, Path.Combine(".project", "outputs", "README.md"), "outputs-guide",
+            WriteMd(root, Path.Combine("project", "outputs", "README.md"), "outputs-guide",
                 "What kind of durable output belongs in this folder", OutputsReadme(req));
         }
         if (included.Contains("specs"))
         {
-            WriteMd(root, Path.Combine(".project", "specs", "README.md"), "specs-guide",
+            WriteMd(root, Path.Combine("project", "specs", "README.md"), "specs-guide",
                 "How to write a spec for a feature or deliverable", SpecsReadme());
         }
         if (included.Contains("references"))
         {
-            WriteMd(root, Path.Combine(".project", "references", "README.md"), "references-guide",
+            WriteMd(root, Path.Combine("project", "references", "README.md"), "references-guide",
                 "Where the human's own source material lives", ReferencesReadme());
         }
     }
@@ -141,23 +141,23 @@ Do not assume this is a software project unless the domain says so.
 
 ## Start here, every session
 
-1. Read `.project/goal.md` — objective and Definition of Done.
-2. Read `.project/state.md` — current reality (not history).
-3. Read `.project/backlog.md` — actionable next work.
-4. Read `.project/constraints.md` before acting.
-5. Read `.project/learnings.md` — patterns, pitfalls, and preferences picked
+1. Read `project/goal.md` — objective and Definition of Done.
+2. Read `project/state.md` — current reality (not history).
+3. Read `project/backlog.md` — actionable next work.
+4. Read `project/constraints.md` before acting.
+5. Read `project/learnings.md` — patterns, pitfalls, and preferences picked
    up in earlier sessions. Add to it when you learn something that will
    matter next time; don't let it become a chronological dump.
 
 ## First session: clarify before you commit
 
-If `.project/goal.md` reads thin, vague, or like a surface-level feature
+If `project/goal.md` reads thin, vague, or like a surface-level feature
 request, don't start building yet. Ask 2-3 sharp questions that surface
 what the person is *actually* trying to accomplish — the real pain, not
 just the literal words. It's common for what someone describes ("a daily
 report") to be a narrower slice of something bigger they haven't
 articulated yet. Reflect that back, let them correct you, then update
-`.project/goal.md` with what you actually agreed on before writing
+`project/goal.md` with what you actually agreed on before writing
 anything else. This only needs to happen once — don't re-interrogate an
 established goal on every session.
 
@@ -167,7 +167,7 @@ Do not guess on a decision that's expensive to reverse (architecture,
 scope, what "done" means, deleting/overwriting something). Stop and ask.
 Guessing wrong costs more than one extra question ever does. This does
 not apply to small, reversible, in-scope choices — decide those yourself
-and note why in `.project/decisions.md` if it's non-obvious.
+and note why in `project/decisions.md` if it's non-obvious.
 
 ## Stay disciplined
 
@@ -197,7 +197,7 @@ which is more nuanced than that name implies.)
 
 Do not stop merely because one task finished. Continue until the
 Definition of Done is met, a blocker needs a human, or budget/iteration
-limits (`.project/metrics.md`) are reached.
+limits (`project/metrics.md`) are reached.
 
 ## Agents available
 
@@ -210,20 +210,20 @@ adds real value — a single agent handling everything is often correct.
 
 {{gates}}
 
-Record every non-trivial decision in `.project/decisions.md`, anything
-worth remembering for next time in `.project/learnings.md`, and every
-durable output under `.project/outputs/` (conversation is not the output).
+Record every non-trivial decision in `project/decisions.md`, anything
+worth remembering for next time in `project/learnings.md`, and every
+durable output under `project/outputs/` (conversation is not the output).
 
 ## Growing the structure: nested AGENTS.md
 
-If `.project/outputs/` grows real substructure (chapters, modules,
+If `project/outputs/` grows real substructure (chapters, modules,
 tracks, whatever the project's unit of work is), and a subfolder
 accumulates its own context that doesn't belong in the project-wide
 files above, drop a small `AGENTS.md` inside that subfolder explaining
 just that subset. Claude Code and similar runtimes read `AGENTS.md`
 hierarchically — the closer file adds to, not replaces, this one. Use
 this when a subfolder's context would otherwise bloat this file or
-`.project/context.md`; don't create one preemptively for every folder.
+`project/context.md`; don't create one preemptively for every folder.
 
 ## Safety phrases
 
@@ -259,7 +259,7 @@ open-source projects, established prior art), documented in that repo's
     private static string ReadmeMd(Requirements req, Architecture arch, List<ComponentDecision> decisions)
     {
         var structureLines = string.Join("\n", decisions.Select(d =>
-            $"- {(d.Included ? "✓" : "○")} `.project/{d.Id}/` — {d.Reason}"));
+            $"- {(d.Included ? "✓" : "○")} `project/{d.Id}/` — {d.Reason}"));
 
         return $$"""
 # {{req.Name}}
@@ -273,11 +273,11 @@ Generated by Agentic Project Architect. Architecture: **{{arch.Profile}}**
 
 - `AGENTS.md` — entry point for any agent runtime (Claude Code, OpenCode, ...)
 - `.agent/` — architecture, policies, prompts (the "how")
-- `.project/` — goal, state, backlog, decisions, outputs (the "what")
+- `project/` — goal, state, backlog, decisions, outputs (the "what")
 
 ## Project structure
 
-This project's `.project/` folder isn't the same for every project — each
+This project's `project/` folder isn't the same for every project — each
 optional subfolder is included only when it's actually useful here:
 
 {{structureLines}}
@@ -325,9 +325,9 @@ start talking to it.
    - "Get started" / "What's the current state of the project?"
    - "Do the next most useful thing"
    - "Show me what's been done so far"
-5. The assistant will keep track of progress for you in the `.project/`
-   folder. You can check `.project/state.md` anytime to see where things
-   stand, or `.project/outputs/` to see what's been produced.
+5. The assistant will keep track of progress for you in the `project/`
+   folder. You can check `project/state.md` anytime to see where things
+   stand, or `project/outputs/` to see what's been produced.
 6. It will ask you before doing anything risky or irreversible — that's
    expected, just answer yes/no.
 7. If it starts going somewhere you don't want, you can say **"stop"**,
@@ -354,7 +354,7 @@ Architecture: **{{arch.Profile}}** — {{arch.Agents.Count}} role(s):
    Claude Code, OpenCode, and Codex CLI all read `AGENTS.md`/`CLAUDE.md`
    at the project root by convention; nothing else to wire up).
 3. The runtime reads `AGENTS.md` on session start. It in turn points to:
-   - `.project/goal.md` / `state.md` / `backlog.md` / `constraints.md` for
+   - `project/goal.md` / `state.md` / `backlog.md` / `constraints.md` for
      current project reality
    - `.agent/architecture.yaml` + `.agent/policies.yaml` for the agent
      topology and budget/permission policy
@@ -504,7 +504,7 @@ and any assumptions made.
     }
 
     // -------------------------------------------------------------
-    // .project/*.md
+    // project/*.md
     // -------------------------------------------------------------
 
     private static string GoalMd(Requirements req) => $"""
@@ -657,11 +657,11 @@ Project status: NOT_STARTED
 {guidance}
 
 This folder is the actual point of the project — everything else in
-`.project/` and `.agent/` exists to help produce what goes here.
+`project/` and `.agent/` exists to help produce what goes here.
 Conversation with the agent is not the output; what's saved in this
 folder is.
 
-See `.project/goal.md` for what "done" means for this project's outputs,
+See `project/goal.md` for what "done" means for this project's outputs,
 and the "Growing the structure" section in the root `AGENTS.md` for when
 a subfolder here should get its own `AGENTS.md`.
 """;
@@ -711,8 +711,8 @@ in `decisions.md` or the relevant file under `specs/` — a reference
 sitting unused in this folder isn't doing anything; citing it where
 it's actually applied is what makes it useful context instead of noise.
 
-This is different from `.project/context.md` (durable facts the agent
-itself has learned/confirmed) and `.project/resources.md` (external
+This is different from `project/context.md` (durable facts the agent
+itself has learned/confirmed) and `project/resources.md` (external
 tools/services the project depends on) — this folder is source material
 the human brought in from outside.
 """;

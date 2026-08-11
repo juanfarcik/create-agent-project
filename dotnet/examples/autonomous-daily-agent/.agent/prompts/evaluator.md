@@ -10,12 +10,12 @@ Independently verifies whether work actually meets the Definition of Done.
 ## Responsibilities
 
 - never trust self-reported completion
-- check the artifact against .project/goal.md's Definition of Done
+- check the artifact against project/goal.md's Definition of Done
 - return PASS/FAIL with required changes
 
 ## Required context
 
-- .project/goal.md
+- project/goal.md
 - artifact under evaluation
 
 ## Do NOT pull in

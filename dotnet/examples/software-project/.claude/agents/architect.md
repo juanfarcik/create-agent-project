@@ -22,8 +22,8 @@ Defines technical structure, technology choices, and tradeoffs before implementa
 
 ## Required context
 
-- .project/goal.md
-- .project/constraints.md
+- project/goal.md
+- project/constraints.md
 - existing codebase structure
 
 ## Do NOT pull in

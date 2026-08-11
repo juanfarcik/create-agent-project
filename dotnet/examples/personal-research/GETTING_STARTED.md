@@ -21,9 +21,9 @@ start talking to it.
    - "Get started" / "What's the current state of the project?"
    - "Do the next most useful thing"
    - "Show me what's been done so far"
-5. The assistant will keep track of progress for you in the `.project/`
-   folder. You can check `.project/state.md` anytime to see where things
-   stand, or `.project/outputs/` to see what's been produced.
+5. The assistant will keep track of progress for you in the `project/`
+   folder. You can check `project/state.md` anytime to see where things
+   stand, or `project/outputs/` to see what's been produced.
 6. It will ask you before doing anything risky or irreversible — that's
    expected, just answer yes/no.
 7. If it starts going somewhere you don't want, you can say **"stop"**,

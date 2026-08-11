@@ -18,7 +18,7 @@ public static class CliHelp
 
         Domain-agnostic scaffold generator for agentic projects. Designs the
         smallest agent architecture that fits your requirements, then generates
-        a portable project structure — AGENTS.md + .agent/ + .project/ — that
+        a portable project structure — AGENTS.md + .agent/ + project/ — that
         works with Claude Code, OpenCode, Codex CLI, or any other
         AGENTS.md-reading CLI, with zero vendor lock-in by default.
 
@@ -59,12 +59,12 @@ public static class CliHelp
               --runtime <value>      agnostic (default) | claude-code | opencode | codex-cli | all
                                      Controls only optional native extras (e.g. Claude
                                      Code subagents/skills) layered on top of the
-                                     agnostic AGENTS.md + .agent/ + .project/ base —
+                                     agnostic AGENTS.md + .agent/ + project/ base —
                                      it never changes what the agnostic base contains.
 
             Before anything is written, you'll see:
               - the recommended architecture (agents, human approval gates, cost)
-              - the project structure preview (which .project/ subfolders will be
+              - the project structure preview (which project/ subfolders will be
                 created and why, e.g. "research/ skipped — no researcher role")
               - a chance to [G]enerate / [C]ustomize (optimize) / [T]ry another
                 profile / [A]bort
@@ -92,7 +92,7 @@ public static class CliHelp
         ["status"] = """
             Usage: create-agent-project status <path>
 
-            Prints .project/state.md and .project/metrics.md — current reality
+            Prints project/state.md and project/metrics.md — current reality
             and iteration/budget counters. Does not modify anything.
 
             Example:

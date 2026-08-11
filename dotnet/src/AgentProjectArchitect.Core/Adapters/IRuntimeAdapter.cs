@@ -3,7 +3,7 @@ namespace AgentProjectArchitect.Core;
 /// <summary>
 /// A runtime adapter generates only what a given agentic CLI (Claude Code,
 /// OpenCode, Codex CLI, ...) needs on top of the runtime-independent core
-/// (<c>AGENTS.md</c>, <c>.agent/</c>, <c>.project/</c>) — it never
+/// (<c>AGENTS.md</c>, <c>.agent/</c>, <c>project/</c>) — it never
 /// duplicates the project model.
 ///
 /// Strategy pattern: adding support for a new runtime means adding a new

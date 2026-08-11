@@ -24,9 +24,9 @@ public class ScaffoldGeneratorTests : IDisposable
         {
             "AGENTS.md", "README.md", "GETTING_STARTED.md",
             ".agent/project.yaml", ".agent/architecture.yaml", ".agent/policies.yaml",
-            ".project/goal.md", ".project/state.md", ".project/backlog.md",
-            ".project/decisions.md", ".project/learnings.md", ".project/constraints.md",
-            ".project/resources.md", ".project/metrics.md",
+            "project/goal.md", "project/state.md", "project/backlog.md",
+            "project/decisions.md", "project/learnings.md", "project/constraints.md",
+            "project/resources.md", "project/metrics.md",
         };
         foreach (var f in expected)
             Assert.True(File.Exists(Path.Combine(root, f.Replace('/', Path.DirectorySeparatorChar))), $"missing {f}");
@@ -35,7 +35,7 @@ public class ScaffoldGeneratorTests : IDisposable
         // includes for this requirements/architecture combo should exist.
         foreach (var d in ProjectComponentCatalog.Decide(req, arch))
         {
-            var exists = Directory.Exists(Path.Combine(root, ".project", d.Id));
+            var exists = Directory.Exists(Path.Combine(root, "project", d.Id));
             Assert.True(exists == d.Included, $"{d.Id}: expected included={d.Included} but exists={exists}");
         }
 
@@ -51,9 +51,9 @@ public class ScaffoldGeneratorTests : IDisposable
         var root = Path.Combine(_tmp, "tiny-demo");
         ScaffoldGenerator.Generate(root, req, arch);
 
-        Assert.False(Directory.Exists(Path.Combine(root, ".project", "specs")));
-        Assert.False(Directory.Exists(Path.Combine(root, ".project", "references")));
-        Assert.True(Directory.Exists(Path.Combine(root, ".project", "outputs")));
+        Assert.False(Directory.Exists(Path.Combine(root, "project", "specs")));
+        Assert.False(Directory.Exists(Path.Combine(root, "project", "references")));
+        Assert.True(Directory.Exists(Path.Combine(root, "project", "outputs")));
     }
 
     [Fact]
@@ -65,8 +65,8 @@ public class ScaffoldGeneratorTests : IDisposable
         ScaffoldGenerator.Generate(root, req, arch);
 
         var readme = File.ReadAllText(Path.Combine(root, "README.md"));
-        Assert.Contains("✓ `.project/outputs/`", readme);
-        Assert.Contains("○ `.project/specs/`", readme);
+        Assert.Contains("✓ `project/outputs/`", readme);
+        Assert.Contains("○ `project/specs/`", readme);
     }
 
     [Fact]
@@ -77,7 +77,7 @@ public class ScaffoldGeneratorTests : IDisposable
         var root = Path.Combine(_tmp, "demo2");
         ScaffoldGenerator.Generate(root, req, arch);
 
-        Assert.Contains("UNIQUE_OBJECTIVE_STRING", File.ReadAllText(Path.Combine(root, ".project", "goal.md")));
+        Assert.Contains("UNIQUE_OBJECTIVE_STRING", File.ReadAllText(Path.Combine(root, "project", "goal.md")));
         Assert.Contains(req.Domain, File.ReadAllText(Path.Combine(root, "AGENTS.md")));
     }
 
@@ -113,7 +113,7 @@ public class ScaffoldGeneratorTests : IDisposable
         var root = Path.Combine(_tmp, "demo4");
         ScaffoldGenerator.Generate(root, req, arch);
 
-        var goal = File.ReadAllText(Path.Combine(root, ".project", "goal.md"));
+        var goal = File.ReadAllText(Path.Combine(root, "project", "goal.md"));
         Assert.StartsWith("---\ntype: goal\npurpose:", goal);
 
         var agents = File.ReadAllText(Path.Combine(root, "AGENTS.md"));
@@ -133,8 +133,8 @@ public class ScaffoldGeneratorTests : IDisposable
         var softwareRoot = Path.Combine(_tmp, "demo6");
         ScaffoldGenerator.Generate(softwareRoot, softwareReq, softwareArch);
 
-        var creativeOutputs = File.ReadAllText(Path.Combine(creativeRoot, ".project", "outputs", "README.md"));
-        var softwareOutputs = File.ReadAllText(Path.Combine(softwareRoot, ".project", "outputs", "README.md"));
+        var creativeOutputs = File.ReadAllText(Path.Combine(creativeRoot, "project", "outputs", "README.md"));
+        var softwareOutputs = File.ReadAllText(Path.Combine(softwareRoot, "project", "outputs", "README.md"));
 
         Assert.Contains("chapters, tracks, mockups", creativeOutputs);
         Assert.Contains("architecture decision records", softwareOutputs);

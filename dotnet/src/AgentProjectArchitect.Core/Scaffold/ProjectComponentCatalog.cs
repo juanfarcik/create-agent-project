@@ -6,7 +6,7 @@ namespace AgentProjectArchitect.Core;
 public sealed record ComponentDecision(string Id, bool Included, string Reason);
 
 /// <summary>
-/// A single optional subfolder under <c>.project/</c>. Not every project needs
+/// A single optional subfolder under <c>project/</c>. Not every project needs
 /// every folder — a trivial one-off task doesn't need <c>plans/</c> if there's
 /// no planner, or <c>telemetry/</c> if it only runs once. This is the same
 /// "minimum architecture required" principle already applied to agent

@@ -16,7 +16,7 @@ in `decisions.md` or the relevant file under `specs/` — a reference
 sitting unused in this folder isn't doing anything; citing it where
 it's actually applied is what makes it useful context instead of noise.
 
-This is different from `.project/context.md` (durable facts the agent
-itself has learned/confirmed) and `.project/resources.md` (external
+This is different from `project/context.md` (durable facts the agent
+itself has learned/confirmed) and `project/resources.md` (external
 tools/services the project depends on) — this folder is source material
 the human brought in from outside.

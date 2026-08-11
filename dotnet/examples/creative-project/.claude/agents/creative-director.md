@@ -21,7 +21,7 @@ Maintains creative vision and coherence across creative work.
 
 ## Required context
 
-- .project/context.md
+- project/context.md
 - prior creative artifacts
 
 ## Do NOT pull in

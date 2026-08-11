@@ -135,7 +135,7 @@ public static class Wizard
         return new Requirements
         {
             Name = Slugify(name),
-            Objective = objective.Length > 0 ? objective : "Not yet defined — refine in .project/goal.md",
+            Objective = objective.Length > 0 ? objective : "Not yet defined — refine in project/goal.md",
             Domain = EngineDomain(domainChoice),
             DefinitionOfDone = dod,
             Size = "small",

@@ -24,7 +24,7 @@ public sealed class Requirements
     public string ExecutionMode { get; set; } = "interactive"; // interactive | agent-loop | scheduled | continuous | event-driven
 
     // agnostic (default — base only, no vendor extras) | claude-code | opencode | codex-cli | all.
-    // The generated AGENTS.md + .agent/ + .project/ core works with any of these (or any future
+    // The generated AGENTS.md + .agent/ + project/ core works with any of these (or any future
     // AGENTS.md-reading CLI) regardless of this value — it only controls whether vendor-specific
     // native extras (e.g. Claude Code subagents) get generated on top of that agnostic base.
     public string Runtime { get; set; } = "agnostic";

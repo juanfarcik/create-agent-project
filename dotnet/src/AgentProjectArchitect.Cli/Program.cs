@@ -159,7 +159,7 @@ public static class Program
         string[] required =
         {
             "AGENTS.md", ".agent/project.yaml", ".agent/architecture.yaml",
-            ".project/goal.md", ".project/state.md",
+            "project/goal.md", "project/state.md",
         };
         foreach (var rel in required)
             if (!File.Exists(Path.Combine(root, rel.Replace('/', Path.DirectorySeparatorChar))))
@@ -197,7 +197,7 @@ public static class Program
     private static int CmdStatus(string[] args)
     {
         var root = RequirePath(args);
-        foreach (var f in new[] { ".project/state.md", ".project/metrics.md" })
+        foreach (var f in new[] { "project/state.md", "project/metrics.md" })
         {
             var p = Path.Combine(root, f.Replace('/', Path.DirectorySeparatorChar));
             if (File.Exists(p))
@@ -333,7 +333,7 @@ public static class Program
     private static void PrintProjectStructure(Requirements req, Architecture arch)
     {
         var decisions = ProjectComponentCatalog.Decide(req, arch);
-        Console.WriteLine("Project structure (.project/):");
+        Console.WriteLine("Project structure (project/):");
         foreach (var d in decisions)
         {
             var mark = d.Included ? "✓" : "○";

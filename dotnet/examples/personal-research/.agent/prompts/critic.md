@@ -15,7 +15,7 @@ Challenges assumptions and identifies weaknesses, on demand.
 ## Required context
 
 - artifact under review
-- .project/constraints.md
+- project/constraints.md
 
 ## Do NOT pull in
 

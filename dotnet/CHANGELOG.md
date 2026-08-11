@@ -28,7 +28,7 @@ comes from — nothing here is presented as invented in-house unless it is.
   (e.g. `coder` is never stripped from a software project, only demoted).
 - `ProjectComponentCatalog` — the file/folder structure itself is now
   proportional to project complexity, the same way agent selection already
-  was. Each of 9 optional `.project/` subfolders has a concrete inclusion
+  was. Each of 9 optional `project/` subfolders has a concrete inclusion
   rule (e.g. `research/` only if a researcher role exists, `checkpoints/`
   only if the architecture uses checkpoints). A trivial project gets 2-3
   folders; a large one gets most of them. Shown as a ✓/○ list with reasons
@@ -37,7 +37,7 @@ comes from — nothing here is presented as invented in-house unless it is.
 ### Scaffold generator
 
 - CLI-agnostic by default (`Requirements.Runtime = "agnostic"`) —
-  `AGENTS.md` + `.agent/` + `.project/` work with any AGENTS.md-reading
+  `AGENTS.md` + `.agent/` + `project/` work with any AGENTS.md-reading
   CLI with zero vendor files. Picking a runtime only adds optional native
   extras on top; it never changes the agnostic core.
 - Runtime adapters (Claude Code, OpenCode, Codex CLI) implement
@@ -47,8 +47,8 @@ comes from — nothing here is presented as invented in-house unless it is.
   for the project's chosen work pattern (distinct mechanism from
   subagents — a Skill is a procedure loaded into the current context,
   not a delegate).
-- `.project/specs/` (one file per feature/deliverable, spec-driven-development-inspired)
-  and `.project/references/` (the human's own source material) —
+- `project/specs/` (one file per feature/deliverable, spec-driven-development-inspired)
+  and `project/references/` (the human's own source material) —
   both conditional per `ProjectComponentCatalog`.
 - Every generated `.md` file carries a small YAML frontmatter block
   (`type`, `purpose`) so it can be classified without reading the body.
@@ -58,7 +58,7 @@ comes from — nothing here is presented as invented in-house unless it is.
   safety phrases, and cites the four failure modes it asks the agent to
   avoid — with honest attribution instead of presenting them as ownerless
   wisdom.
-- `.project/learnings.md` distinct from `.project/decisions.md` (emergent
+- `project/learnings.md` distinct from `project/decisions.md` (emergent
   facts vs. deliberate choices).
 
 ### Wizard & CLI

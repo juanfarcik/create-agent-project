@@ -2,7 +2,7 @@ project:
   name: personal-research
   domain: research
   objective: Every morning, spend 30 minutes researching experimental jazz production techniques and leave a concise report.
-  definition_of_done: A short daily report exists under .project/outputs/ with at least one concrete, actionable technique.
+  definition_of_done: A short daily report exists under project/outputs/ with at least one concrete, actionable technique.
 requirements:
   size: tiny
   lifetime: long-running

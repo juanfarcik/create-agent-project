@@ -19,13 +19,13 @@ Coordinates the project and decides the next highest-value action.
 - identify the gap between current state and Definition of Done
 - decide whether specialized help is needed
 - delegate only when delegation adds value
-- update .project/state.md and .project/backlog.md after meaningful work
+- update project/state.md and project/backlog.md after meaningful work
 
 ## Required context
 
-- .project/goal.md
-- .project/state.md
-- .project/backlog.md
+- project/goal.md
+- project/state.md
+- project/backlog.md
 
 ## Do NOT pull in
 

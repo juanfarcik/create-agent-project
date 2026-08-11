@@ -56,7 +56,7 @@ inventing it, that's stated too.
 
 ## Structure conventions we generate
 
-- **Proportional `.project/` structure** (`ProjectComponentCatalog`) — each
+- **Proportional `project/` structure** (`ProjectComponentCatalog`) — each
   of the 9 optional subfolders (`specs`, `references`, `research`, `plans`,
   `experiments`, `reviews`, `checkpoints`, `telemetry`, plus always-on
   `outputs`) is generated only when a concrete rule about the requirements
@@ -76,7 +76,7 @@ inventing it, that's stated too.
   [code.claude.com/docs/en/memory](https://code.claude.com/docs/en/memory).
   We just tell the generated project's own `AGENTS.md` to use this
   explicitly instead of leaving it undiscovered.
-- **`.project/specs/`, one file per feature/deliverable, separate from the
+- **`project/specs/`, one file per feature/deliverable, separate from the
   project-wide goal** — direct practical inspiration from **spec-driven
   development**: GitHub's [spec-kit](https://github.com/github/spec-kit)
   (2025) and AWS/Kiro's spec-driven workflow, both of which separate
@@ -84,7 +84,7 @@ inventing it, that's stated too.
   We scaled this down significantly — no multi-phase CLI commands, just
   the file-separation idea, appropriate for a personal-project scaffold
   instead of an enterprise agentic SDLC tool.
-- **`.project/references/`** — a folder for the human's own source
+- **`project/references/`** — a folder for the human's own source
   material, distinct from `context.md` (facts the agent has learned) and
   `resources.md` (external tools/services). Not adapted from a specific
   named source — general documentation-organization practice (separating

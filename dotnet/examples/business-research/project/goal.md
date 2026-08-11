@@ -11,7 +11,7 @@ Research a market opportunity for a new product, analyze competitors, estimate f
 
 ## Definition of Done
 
-A strategy document exists with market sizing, competitor analysis, financial viability estimate, and it is kept current in .project/outputs/.
+A strategy document exists with market sizing, competitor analysis, financial viability estimate, and it is kept current in project/outputs/.
 
 ## Domain
 

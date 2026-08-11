@@ -15,12 +15,12 @@ Reduces uncertainty by gathering evidence and comparing alternatives.
 
 ## Required context
 
-- .project/goal.md
+- project/goal.md
 - current task
 
 ## Do NOT pull in
 
-- .project/decisions.md history unrelated to the task
+- project/decisions.md history unrelated to the task
 
 ## Allowed tools
 

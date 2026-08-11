@@ -56,9 +56,9 @@ for the shape) and register it in `RuntimeAdapterRegistry.Default`'s list.
 This is a Strategy pattern deliberately — adding a runtime should never
 require editing another adapter's code. It should only generate what
 that runtime needs on top of the runtime-independent core (`AGENTS.md`,
-`.agent/`, `.project/`) — never duplicate the project model.
+`.agent/`, `project/`) — never duplicate the project model.
 
-## Adding a new `.project/` component
+## Adding a new `project/` component
 
 Add a `ProjectComponent` entry to `ProjectComponentCatalog.Components`
 with an `Include` predicate (against `Requirements`/`Architecture`) and a

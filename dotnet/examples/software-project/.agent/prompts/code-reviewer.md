@@ -16,7 +16,7 @@ Reviews code changes for correctness, security, and unnecessary complexity befor
 ## Required context
 
 - the diff/change under review
-- .project/constraints.md
+- project/constraints.md
 
 ## Do NOT pull in
 

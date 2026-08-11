@@ -7,7 +7,7 @@ decides the architecture — a rules engine reads your requirements
 (size, risk, domain, autonomy) and picks the smallest agent setup that
 actually fits, from one agent to a full multi-role team. The output is
 a portable, CLI-agnostic project structure (`AGENTS.md` + `.agent/` +
-`.project/`) you open directly with **Claude Code**, **OpenCode**,
+`project/`) you open directly with **Claude Code**, **OpenCode**,
 **Codex CLI**, or any other `AGENTS.md`-reading tool — no vendor
 lock-in by default.
 

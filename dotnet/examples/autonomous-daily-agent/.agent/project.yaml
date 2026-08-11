@@ -2,7 +2,7 @@ project:
   name: autonomous-daily-agent
   domain: ops
   objective: Continuously monitor a project's backlog, pick the highest-value next action, and execute it every day without supervision unless something risky comes up.
-  definition_of_done: Backlog trends toward zero; every action taken is logged in .project/decisions.md.
+  definition_of_done: Backlog trends toward zero; every action taken is logged in project/decisions.md.
 requirements:
   size: small
   lifetime: long-running

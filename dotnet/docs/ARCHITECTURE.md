@@ -13,7 +13,7 @@ A deterministic pipeline:
 ```
 Requirements  ──▶  Architecture  ──▶  files on disk
  (what the        (which agent        (AGENTS.md, .agent/,
-  user wants)       roles, how         .project/, optional
+  user wants)       roles, how         project/, optional
                      they work)         vendor adapters)
 ```
 
@@ -47,7 +47,7 @@ dotnet/
 │   │   │   └── RuntimeAdapterRegistry.cs       # resolves Requirements.Runtime -> adapters
 │   │   └── Scaffold/
 │   │       ├── ScaffoldGenerator.cs            # writes every file
-│   │       └── ProjectComponentCatalog.cs      # which .project/ subfolders to create, and why
+│   │       └── ProjectComponentCatalog.cs      # which project/ subfolders to create, and why
 │   └── AgentProjectArchitect.Cli/     # console wizard + command dispatch — all Console I/O lives here
 │       ├── Program.cs                  # command dispatch, argument parsing, output formatting
 │       ├── Wizard.cs                   # Simple() / Advanced() interactive flows
@@ -272,7 +272,7 @@ maps to a Skill (a procedure loaded into the current context). See
 operations:
 
 1. `ProjectComponentCatalog.Decide()` — compute once, reused throughout.
-2. Create `root`, `.agent/prompts/`, `.project/`, and only the included
+2. Create `root`, `.agent/prompts/`, `project/`, and only the included
    component subfolders.
 3. Write `AGENTS.md`, `README.md`, `GETTING_STARTED.md` (the last one
    branches on `Requirements.ExperienceLevel` — a materially different,
@@ -281,7 +281,7 @@ operations:
    (via `YamlSerializer`, a `YamlDotNet.Serialization.ISerializer` with
    underscored naming — `BudgetProfile` becomes `budget_profile` on disk).
 5. Write one `.agent/prompts/<role>.md` per agent in `arch.Agents`.
-6. Write the 9 `.project/*.md` core files (always) plus the conditional
+6. Write the 9 `project/*.md` core files (always) plus the conditional
    component READMEs (§6).
 
 Every `.md` file goes through `WriteMd(root, relative, type, purpose,
@@ -433,7 +433,7 @@ Patterns used throughout:
    included and excluded outcomes — a component that's silently skipped
    with no explanation defeats the entire point of §6.
 5. Runtime adapters never write to the agnostic core's files
-   (`AGENTS.md`, `.agent/*`, `.project/*`) — they only add new files
+   (`AGENTS.md`, `.agent/*`, `project/*`) — they only add new files
    under vendor-specific paths. An adapter that had to edit `AGENTS.md`
    to do its job would be a sign the abstraction is wrong.
 
